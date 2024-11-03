@@ -8,16 +8,16 @@
 
 .weather-card__temp {
   position: absolute;
-  line-height: 40px;
-  font-size: 36px;
-  margin: 0;
   top: 20px;
   left: 16px;
-  color: white;
+  font-size: 36px;
+  line-height: 40px;
+  margin: 0;
+  color: #fff;
 }
 
 .weather-card__image {
+  width: 100%;
   object-fit: cover;
   object-position: right top;
-  width: 100%;
 }

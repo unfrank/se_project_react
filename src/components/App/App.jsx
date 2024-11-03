@@ -12,7 +12,6 @@ import {
   getWeatherType,
 } from "../../utils/weatherApi";
 
-// const [count, setCount] = useState(0);
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: { getWeatherType },

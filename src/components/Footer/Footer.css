@@ -1,15 +1,14 @@
 .footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 20px;
-  margin: 171px 0 24px 0;
-
-  background-color: #f3f3f3;
-  color: #000;
   font-family: "Cabinet Grotesk", Arial, sans-serif;
+  justify-content: space-between;
+  background-color: #f3f3f3;
+  align-items: center;
+  color: #000;
+  display: flex;
+  text-align: left;
+  margin: 171px 0 24px 0;
+  line-height: 20px;
+  height: 20px;
   font-size: 16px;
   font-weight: 500;
-  line-height: 20px;
-  text-align: left;
 }

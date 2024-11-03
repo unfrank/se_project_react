@@ -13,10 +13,9 @@
   border-top-right-radius: 12px;
 }
 
-.modal--item .modal__caption {
-  padding-top: 20px;
-  padding-left: 32px;
-  padding-bottom: 12px;
+.modal--item .modal__caption,
+.modal--item .modal__weather {
+  padding: 20px 0 12px 32px;
   margin: 0;
   font-size: 20px;
   font-weight: 700;
@@ -25,14 +24,8 @@
 }
 
 .modal--item .modal__weather {
-  color: black;
   padding-bottom: 32px;
-  padding-left: 32px;
-  margin: 0;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 24px;
-  text-align: left;
+  color: black;
 }
 
 .modal--item .modal__close {
