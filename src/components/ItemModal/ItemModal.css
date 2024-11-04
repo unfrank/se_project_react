@@ -13,21 +13,6 @@
   border-top-right-radius: 12px;
 }
 
-.modal--item .modal__caption,
-.modal--item .modal__weather {
-  padding: 20px 0 12px 32px;
-  margin: 0;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 24px;
-  text-align: left;
-}
-
-.modal--item .modal__weather {
-  padding-bottom: 32px;
-  color: black;
-}
-
 .modal--item .modal__close {
   position: absolute;
   top: 26px;
@@ -43,4 +28,21 @@
 .modal--item .modal__close img {
   width: 100%;
   height: 100%;
+}
+
+.modal__caption {
+  margin: 0;
+  padding: 0;
+}
+
+.modal__weather {
+  margin: 0;
+  padding-top: 12px;
+}
+
+.modal__footer {
+  margin-left: 32px;
+  margin-top: 20px;
+  margin-bottom: 32px;
+  flex-direction: column;
 }
