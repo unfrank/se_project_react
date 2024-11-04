@@ -55,7 +55,8 @@ function App() {
         <ModalWithForm
           title="New Garment"
           buttonText="Add Garment"
-          activeModal={activeModal}
+          // activeModal={activeModal}
+          isOpen={activeModal === "add-garment"}
           onClose={closeActiveModal}
         >
           <label htmlFor="name" className="modal__label">
@@ -80,23 +81,39 @@ function App() {
             <legend className="modal__legend">Select the Weather Type:</legend>
 
             <label htmlFor="hot" className="modal__label_type_radio">
-              <input id="hot" type="radio" className="modal__radio-input" />
+              <input
+                name="weatherType"
+                id="hot"
+                type="radio"
+                className="modal__radio-input"
+              />
               <span className="modal__label_text">Hot</span>
             </label>
 
             <label htmlFor="warm" className="modal__label_type_radio">
-              <input id="warm" type="radio" className="modal__radio-input" />
+              <input
+                name="weatherType"
+                id="warm"
+                type="radio"
+                className="modal__radio-input"
+              />
               <span className="modal__label_text">Warm</span>
             </label>
 
             <label htmlFor="cold" className="modal__label_type_radio">
-              <input id="cold" type="radio" className="modal__radio-input" />
+              <input
+                name="weatherType"
+                id="cold"
+                type="radio"
+                className="modal__radio-input"
+              />
               <span className="modal__label_text">Cold</span>
             </label>
           </fieldset>
         </ModalWithForm>
         <ItemModal
-          activeModal={activeModal}
+          // activeModal={activeModal}
+          isOpen={activeModal === "preview"}
           card={selectedCard}
           onClose={closeActiveModal}
         />
@@ -106,5 +123,3 @@ function App() {
 }
 
 export default App;
-
-// ! // ! REMEMBER! Removed modal__label class from each of the 3 radios. orig: className="modal__label modal__label_type_radio"
