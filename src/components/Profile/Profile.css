@@ -1,0 +1,8 @@
+.profile {
+  width: 100%;
+  display: flex;
+}
+
+.profile__header {
+  width: 100%;
+}

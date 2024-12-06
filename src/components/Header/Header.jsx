@@ -4,6 +4,7 @@ import logo from "../../assets/images_header/logo.svg";
 import avatar from "../../assets/images_header/self_pixel_art.png";
 import { filterWeatherData } from "../../utils/weatherApi";
 import ToggleSwitch from "../../ToggleSwitch/ToggleSwitch";
+import { Link } from "react-router-dom";
 
 function Header({ handleAddClick, weatherData }) {
   const currentDate = new Date().toLocaleString("default", {
@@ -12,7 +13,9 @@ function Header({ handleAddClick, weatherData }) {
   });
   return (
     <header className="header">
-      <img className="header__logo" src={logo} alt="WTWR Logo" />
+      <Link to="/" className="header__logo">
+        <img className="header__logo" src={logo} alt="WTWR Logo" />
+      </Link>
       <p className="header__date-and-location">
         {currentDate}, {weatherData.city}
       </p>
@@ -26,12 +29,14 @@ function Header({ handleAddClick, weatherData }) {
         >
           + Add Clothes
         </button>
-        <p className="header__username">James Unthank</p>
-        <img
-          src={avatar}
-          alt="User Profile Picture"
-          className="header__avatar"
-        />
+        <Link to="/profile" className="header__profile">
+          <p className="header__username">James Unthank</p>
+          <img
+            src={avatar}
+            alt="User Profile Picture"
+            className="header__avatar"
+          />
+        </Link>
       </div>
     </header>
   );
