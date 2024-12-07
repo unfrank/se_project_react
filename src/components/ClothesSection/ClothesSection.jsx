@@ -8,7 +8,7 @@ function ClothesSection({ clothingItems, onAddItem, handleCardClick }) {
       <button className="clothes-section__add-btn" onClick={onAddItem}>
         + Add Item
       </button>
-      <ul className="clothes-section___list">
+      <ul className="clothes-section__list">
         {clothingItems.map((item) => (
           <ItemCard key={item._id} item={item} onCardClick={handleCardClick} />
         ))}
