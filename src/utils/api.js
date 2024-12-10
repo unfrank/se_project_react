@@ -1,26 +1,37 @@
-export const addClothingItem = (item) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (!item.name || !item.imageUrl || !item.weather) {
-        reject("Missing required fields");
-      } else {
-        resolve({
-          ...item,
-          _id: Date.now().toString(),
-        });
-      }
-    }, 500);
-  });
+const baseUrl = "http://localhost:3001";
+
+const handleResponse = (res) => {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(Error: ${res.status});
 };
 
-export const deleteClothingItem = (item) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (!item) {
-        reject("Item not found");
-      } else {
-        resolve(`Item ${item.name} deleted`);
-      }
-    }, 500);
-  });
+const handleError = (err) => {
+  console.error(err);
+  return Promise.reject(err);
+};
+
+export const getItems = () => {
+  return fetch(${baseUrl}/items).then(handleResponse).catch(handleError);
+};
+
+export const addItem = (item) => {
+  return fetch(${baseUrl}/items, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(item),
+  })
+    .then(handleResponse)
+    .catch(handleError);
+};
+
+export const deleteItem = (id) => {
+  return fetch(${baseUrl}/items/${id}, {
+    method: "DELETE",
+  })
+    .then(handleResponse)
+    .catch(handleError);
 };

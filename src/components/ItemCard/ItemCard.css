@@ -1,5 +1,5 @@
 .card {
-  min-width: 360px;
+  max-width: 355px;
   position: relative;
   display: flex;
   justify-content: center;

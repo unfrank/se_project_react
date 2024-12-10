@@ -1,6 +1,6 @@
-const request = (url) => fetch(url).then(checkResponse);
+const request = (url) => fetch(url).then(handleResponse);
 
-const checkResponse = (res) => {
+const handleResponse = (res) => {
   if (res.ok) {
     return res.json();
   }
