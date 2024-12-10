@@ -16,6 +16,7 @@
 }
 
 .modal__content {
+  position: relative;
   background-color: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 20px;
@@ -23,7 +24,6 @@
   width: 100%;
   height: 436px;
   box-sizing: border-box;
-  position: relative;
   padding: 28px 28px 36px;
 }
 
@@ -36,9 +36,9 @@
 }
 
 .modal__close {
-  position: absolute;
-  top: 20px;
-  right: 28px;
+  position: absolute; /* Anchor it to the closest positioned parent */
+  top: 20px; /* 20px from the top of the parent */
+  right: 28px; /* 28px from the right of the parent */
   background: none;
   border: none;
   cursor: pointer;
@@ -135,4 +135,8 @@
 
 .modal__label_type_radio:nth-child(4) {
   padding-bottom: 2px;
+}
+
+.modal__radio {
+  cursor: pointer;
 }

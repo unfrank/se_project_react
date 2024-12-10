@@ -12,3 +12,15 @@ export const addClothingItem = (item) => {
     }, 500);
   });
 };
+
+export const deleteClothingItem = (item) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (!item) {
+        reject("Item not found");
+      } else {
+        resolve(`Item ${item.name} deleted`);
+      }
+    }, 500);
+  });
+};

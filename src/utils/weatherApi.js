@@ -1,6 +1,3 @@
-// const request = (url, options) => fetch(url, options).then(checkResponse);
-// const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
-
 const request = (url) => fetch(url).then(checkResponse);
 
 const checkResponse = (res) => {
@@ -28,7 +25,6 @@ export const filterWeatherData = (data) => {
     F: Math.round(data.main.temp),
     C: Math.round(((data.main.temp - 32) * 5) / 9),
   };
-  // console.log(result.temp);
   result.type = getWeatherType(result.temp.F);
 
   result.condition = data.weather[0].main.toLowerCase();

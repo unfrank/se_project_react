@@ -1,4 +1,4 @@
-import "./AddItemModal.css";
+// import "./AddItemModal.css";
 import React, { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
@@ -14,9 +14,6 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
       setWeather("");
     }
   }, [isOpen]);
-
-  console.log("Form Inputs:", { name, imageUrl, weather });
-  console.log("Button enabled:", name && imageUrl && weather);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -61,6 +58,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
         <legend className="modal__legend">Select the Weather Type:</legend>
         <label htmlFor="hot" className="modal__label modal__label_type_radio">
           <input
+            className="modal__radio"
             name="weatherType"
             id="hot"
             type="radio"
@@ -72,6 +70,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
         </label>
         <label htmlFor="warm" className="modal__label modal__label_type_radio">
           <input
+            className="modal__radio"
             name="weatherType"
             id="warm"
             type="radio"
@@ -83,6 +82,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
         </label>
         <label htmlFor="cold" className="modal__label modal__label_type_radio">
           <input
+            className="modal__radio"
             name="weatherType"
             id="cold"
             type="radio"
