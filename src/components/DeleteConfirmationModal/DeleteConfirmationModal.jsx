@@ -3,7 +3,18 @@ import "./DeleteConfirmationModal.css";
 import closeBtn from "../../assets/close-btn--dark.png";
 
 function DeleteConfirmationModal({ isOpen, onClose, onConfirm, card }) {
+  // Log when the modal is rendered
+  console.log("DeleteConfirmationModal rendered:", { isOpen, card });
+
   const handleConfirm = () => {
+    // Log when the "Yes" button is clicked
+    console.log("DeleteConfirmationModal: 'Yes' clicked for card:", card);
+
+    if (!onConfirm) {
+      console.error("No onConfirm function passed to modal");
+      return;
+    }
+
     onConfirm(card);
   };
 
@@ -28,7 +39,10 @@ function DeleteConfirmationModal({ isOpen, onClose, onConfirm, card }) {
           <button
             type="button"
             className="delete-modal__button delete-modal__button--cancel"
-            onClick={onClose}
+            onClick={() => {
+              console.log("Cancel button clicked in DeleteConfirmationModal");
+              onClose();
+            }}
           >
             Cancel
           </button>

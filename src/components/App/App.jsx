@@ -6,7 +6,7 @@ import Profile from "../Profile/Profile";
 import ItemModal from "../ItemModal/ItemModal";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { useEffect, useState } from "react";
-import { addClothingItem, deleteClothingItem } from "../../utils/api";
+import { getItems, addItem, deleteItem } from "../../utils/api";
 import {
   coordinates,
   apiKey,
@@ -43,18 +43,8 @@ function App() {
     setSelectedCard(card);
   };
 
-  // const handleAddItemSubmit = (item) => {
-  //   addClothingItem(item)
-  //     .then((newItem) => {
-  //       setClothingItems([newItem, ...clothingItems]);
-  //     })
-  //     .catch((err) => {
-  //       console.error("Error adding item:", err);
-  //     });
-  // };
-
   const handleAddItemSubmit = (item) => {
-    addClothingItem(item)
+    addItem(item)
       .then((newItem) => {
         const completeItem = {
           ...newItem,
@@ -72,11 +62,16 @@ function App() {
   };
 
   const handleCardDelete = (card) => {
-    deleteClothingItem(card)
-      .then((message) => {
-        setClothingItems((prevItems) =>
-          prevItems.filter((i) => i._id !== card._id)
-        );
+    deleteItem(card._id)
+      .then(() => {
+        setClothingItems((prevItems) => {
+          console.log("Current clothing items before deletion:", prevItems);
+          const updatedItems = prevItems.filter(
+            (item) => item._id !== card._id
+          );
+          console.log("Filtered clothing items after deletion:", updatedItems);
+          return updatedItems;
+        });
         setConfirmationModalOpen(false);
         setCardToDelete(null);
         setActiveModal("");
@@ -95,7 +90,7 @@ function App() {
   };
 
   const handleDeleteItem = (item) => {
-    deleteClothingItem(item)
+    deleteItem(item)
       .then((message) => {
         setClothingItems((prevItems) => {
           const updatedItems = prevItems.filter((i) => i._id !== item._id);
