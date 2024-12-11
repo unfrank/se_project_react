@@ -1,9 +1,8 @@
 import "./Header.css";
 import logo from "../../assets/images_header/logo.svg";
-// import avatar from "../../assets/images_header/avatar.png";
 import avatar from "../../assets/images_header/self_pixel_art.png";
-import { filterWeatherData } from "../../utils/weatherApi";
-import ToggleSwitch from "../../ToggleSwitch/ToggleSwitch";
+//? import { filterWeatherData } from "../../utils/weatherApi";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
 
 function Header({ handleAddClick, weatherData }) {
