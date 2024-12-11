@@ -30,12 +30,13 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
 
     if (field === "imageUrl") {
       if (!value.trim()) errorMessage = "Image URL is required.";
-      else if (!/^https?:\/\/\S+\.\S+$/i.test(value))
-        errorMessage = "Enter a valid URL.";
-    }
-
-    if (field === "weather") {
-      if (!value.trim()) errorMessage = "Select a weather type.";
+      else {
+        try {
+          new URL(value);
+        } catch {
+          errorMessage = "Enter a valid URL.";
+        }
+      }
     }
 
     setErrors((prev) => ({ ...prev, [field]: errorMessage }));

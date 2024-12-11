@@ -67,34 +67,58 @@
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
     },
     {
-      "name": "Touque",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sunglasses.png?etag=a1bced9e331d36cb278c45df51150432",
+      "name": "dd",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Beanie.png?etag=bc10497cc80fa557f036e94f9999f7b2",
       "weather": "cold",
-      "_id": 17
-    },
-    {
-      "name": "Hoodie",
-      "imageUrl": "https://via.placeholder.com/150",
-      "weather": "cold",
-      "_id": 18
-    },
-    {
-      "name": "ff",
-      "imageUrl": "https://cdn.pixabay.com/photo/2014/06/03/19/38/board-361516_1280.jpg",
-      "weather": "cold",
-      "_id": 19
+      "_id": 23
     },
     {
       "name": "some clothes",
-      "imageUrl": "https://cdn.pixabay.com/photo/2014/06/03/19/38/board-361516_1280.jpg",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Beanie.png?etag=bc10497cc80fa557f036e94f9999f7b2",
       "weather": "cold",
-      "_id": 20
+      "_id": 24
     },
     {
-      "name": "dd",
-      "imageUrl": "https://cdn.pixabay.com/photo/2014/06/03/19/38/board-361516_1280.jpg",
+      "name": "whatever",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Beanie.png?etag=bc10497cc80fa557f036e94f9999f7b2",
       "weather": "cold",
-      "_id": 21
+      "_id": 25
+    },
+    {
+      "name": "Touque",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sunglasses.png?etag=a1bced9e331d36cb278c45df51150432",
+      "weather": "cold",
+      "_id": 29
+    },
+    {
+      "name": "Touque",
+      "imageUrl": "https://via.placeholder.com/150",
+      "weather": "cold",
+      "_id": 30
+    },
+    {
+      "name": "Touque",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sunglasses.png?etag=a1bced9e331d36cb278c45df51150432",
+      "weather": "cold",
+      "_id": 32
+    },
+    {
+      "name": "Touque",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Beanie.png?etag=bc10497cc80fa557f036e94f9999f7b2",
+      "weather": "cold",
+      "_id": 33
+    },
+    {
+      "name": "Touque",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Beanie.png?etag=bc10497cc80fa557f036e94f9999f7b2",
+      "weather": "cold",
+      "_id": 34
+    },
+    {
+      "name": "some clothes",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sunglasses.png?etag=a1bced9e331d36cb278c45df51150432",
+      "weather": "cold",
+      "_id": 35
     }
   ]
 }

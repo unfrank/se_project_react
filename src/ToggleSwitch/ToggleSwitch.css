@@ -9,8 +9,6 @@
   width: 56px;
   height: 28px;
   appearance: none;
-  /* padding: 8px 0; */
-  /* cursor: pointer; */
 }
 
 .switch__slider {
@@ -51,10 +49,8 @@
 }
 .switch__temp-F {
   left: 11px;
-  /* top: 3px; */
 }
 
 .switch__temp-C {
   right: 9px;
-  /* top: 2px; */
 }

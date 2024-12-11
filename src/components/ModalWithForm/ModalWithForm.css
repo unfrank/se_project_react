@@ -36,9 +36,9 @@
 }
 
 .modal__close {
-  position: absolute; /* Anchor it to the closest positioned parent */
-  top: 20px; /* 20px from the top of the parent */
-  right: 28px; /* 28px from the right of the parent */
+  position: absolute;
+  top: 20px;
+  right: 28px;
   background: none;
   border: none;
   cursor: pointer;
@@ -104,6 +104,7 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
+  position: relative;
 }
 
 .modal__fieldset {
