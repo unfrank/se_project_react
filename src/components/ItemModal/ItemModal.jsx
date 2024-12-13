@@ -4,15 +4,7 @@ import closeBtnLight from "../../assets/close-btn--light.png";
 function ItemModal({ isOpen, onClose, card, onDeleteItem }) {
   const handleDelete = () => {
     if (onDeleteItem) {
-      onDeleteItem(card)
-        .then(() => {
-          onClose();
-        })
-        .catch((err) => {
-          console.error("[ItemModal] Error during deletion:", err);
-        });
-    } else {
-      console.error("[ItemModal] onDeleteItem is not defined.");
+      onDeleteItem(card);
     }
   };
 
