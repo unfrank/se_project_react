@@ -1,11 +1,6 @@
-const request = (url) => fetch(url).then(handleResponse);
+import { handleResponse } from "./api";
 
-const handleResponse = (res) => {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Error: ${res.status}`);
-};
+const request = (url) => fetch(url).then(handleResponse);
 
 const handleError = (err) => {
   console.error(err);

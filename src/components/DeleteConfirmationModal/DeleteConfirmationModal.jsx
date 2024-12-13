@@ -1,23 +1,20 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./DeleteConfirmationModal.css";
 import closeBtn from "../../assets/close-btn--dark.png";
 
 function DeleteConfirmationModal({ isOpen, onClose, onConfirm, card }) {
-  useEffect(() => {
-    console.log("[DeleteConfirmationModal] Props on update:", { isOpen, card });
-  }, [isOpen, card]);
-
   const handleConfirm = () => {
-    if (!onConfirm) {
-      console.error("[DeleteConfirmationModal] onConfirm is not defined.");
-      return;
+    if (onConfirm) {
+      onConfirm(card)
+        .then(() => {
+          closeActiveModal();
+        })
+        .catch((err) => {
+          console.error("Error deleting item:", err);
+        });
+    } else {
+      console.error("onConfirm is not defined");
     }
-
-    console.log(
-      "[DeleteConfirmationModal] Confirm button clicked for card:",
-      card
-    );
-    onConfirm(card);
   };
 
   return (
@@ -41,10 +38,7 @@ function DeleteConfirmationModal({ isOpen, onClose, onConfirm, card }) {
           <button
             type="button"
             className="delete-modal__button delete-modal__button--cancel"
-            onClick={() => {
-              console.log("[DeleteConfirmationModal] Cancel button clicked");
-              onClose();
-            }}
+            onClick={onClose}
           >
             Cancel
           </button>

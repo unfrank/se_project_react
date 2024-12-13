@@ -34,8 +34,10 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     getItems()
       .then((fetchedItems) => {
         const formattedItems = fetchedItems.reverse().map((item) => ({
@@ -43,13 +45,19 @@ function App() {
           imageUrl: item.imageUrl,
           weather: item.weather,
         }));
-
         setClothingItems(formattedItems);
       })
-      .catch((err) => console.error("Error fetching items:", err));
+      .catch((err) => {
+        console.error("Error fetching items:", err);
+        alert("Failed to fetch items. Please try again.");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     getWeather(coordinates, apiKey)
       .then((data) => {
         const filteredData = filterWeatherData(data);
@@ -57,6 +65,9 @@ function App() {
       })
       .catch((err) => {
         console.error("Error fetching weather data:", err);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
 
@@ -66,6 +77,7 @@ function App() {
   };
 
   const handleAddItemSubmit = (item) => {
+    setLoading(true);
     addItem(item)
       .then((newItem) => {
         const completeItem = {
@@ -74,8 +86,14 @@ function App() {
           weather: newItem.weather,
         };
         setClothingItems([completeItem, ...clothingItems]);
+        closeActiveModal();
       })
-      .catch((err) => console.error("Error adding item:", err));
+      .catch((err) => {
+        console.error("Error adding item:", err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   const handleCardDelete = (card) => {
@@ -86,7 +104,7 @@ function App() {
         );
         setConfirmationModalOpen(false);
         setCardToDelete(null);
-        setActiveModal("");
+        closeActiveModal();
       })
       .catch((err) => {
         console.error("Error deleting item:", err);
@@ -105,9 +123,16 @@ function App() {
     setCurrentTemperatureUnit((prevUnit) => (prevUnit === "C" ? "F" : "C"));
   };
 
+  // ?
   const openConfirmationModal = (card) => {
     setCardToDelete(card);
     setConfirmationModalOpen(true);
+  };
+
+  // ?
+  const closeConfirmationModal = () => {
+    setCardToDelete(null);
+    setConfirmationModalOpen(false);
   };
 
   return (
@@ -118,6 +143,8 @@ function App() {
             value={{ currentTemperatureUnit, handleToggleSwitchChange }}
           >
             <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+            {loading && <div className="loading">Loading...</div>}{" "}
+            {/* Loading indicator */}
             <Routes>
               <Route
                 path="/"
@@ -149,13 +176,13 @@ function App() {
             <ItemModal
               isOpen={activeModal === "preview"}
               card={selectedCard}
-              onClose={() => setActiveModal("")}
+              onClose={closeActiveModal}
               onDeleteItem={openConfirmationModal}
             />
             <DeleteConfirmationModal
               isOpen={confirmationModalOpen}
               card={cardToDelete}
-              onClose={() => setConfirmationModalOpen(false)}
+              onClose={closeConfirmationModal}
               onConfirm={handleCardDelete}
             />
           </CurrentTemperatureUnitContext.Provider>

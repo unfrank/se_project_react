@@ -1,84 +1,29 @@
 import "./AddItemModal.css";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useFormAndValidation } from "../../hooks/useFormValidation";
 
 const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
-  const [name, setName] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [weather, setWeather] = useState("");
-  const [errors, setErrors] = useState({});
-  const [isFormValid, setIsFormValid] = useState(false);
-
-  useEffect(() => {
-    if (isOpen) {
-      setName("");
-      setImageUrl("");
-      setWeather("");
-      setErrors({});
-      setIsFormValid(false);
-    }
-  }, [isOpen]);
-
-  const validateField = (field, value) => {
-    let errorMessage = "";
-
-    if (field === "name") {
-      if (!value.trim()) errorMessage = "Name is required.";
-      else if (value.length < 2)
-        errorMessage = "Name must be at least 2 characters.";
-    }
-
-    if (field === "imageUrl") {
-      if (!value.trim()) errorMessage = "Image URL is required.";
-      else {
-        try {
-          new URL(value);
-        } catch {
-          errorMessage = "Enter a valid URL.";
-        }
-      }
-    }
-
-    setErrors((prev) => ({ ...prev, [field]: errorMessage }));
-  };
-
-  const handleNameChange = (e) => {
-    const value = e.target.value;
-    setName(value);
-    validateField("name", value);
-  };
-
-  const handleImageUrlChange = (e) => {
-    const value = e.target.value;
-    setImageUrl(value);
-    validateField("imageUrl", value);
-  };
-
-  const handleWeatherChange = (e) => {
-    const value = e.target.value;
-    setWeather(value);
-    validateField("weather", value);
-  };
-
-  useEffect(() => {
-    const isValid =
-      !errors.name &&
-      !errors.imageUrl &&
-      !errors.weather &&
-      name.trim() &&
-      imageUrl.trim() &&
-      weather.trim();
-
-    setIsFormValid(isValid);
-  }, [errors, name, imageUrl, weather]);
+  const { values, handleChange, errors, isValid, resetForm } =
+    useFormAndValidation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (isFormValid) {
-      onAddItem({ name, imageUrl, weather });
-      onCloseModal();
+    if (isValid) {
+      onAddItem(values)
+        .then(() => {
+          resetForm();
+          closeActiveModal();
+        })
+        .catch((err) => {
+          console.error("Error adding item:", err);
+        });
     }
   };
+
+  React.useEffect(() => {
+    if (isOpen) resetForm();
+  }, [isOpen, resetForm]);
 
   return (
     <ModalWithForm
@@ -87,7 +32,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
       isOpen={isOpen}
       onClose={onCloseModal}
       onSubmit={handleSubmit}
-      disabled={!isFormValid}
+      disabled={!isValid}
     >
       <label htmlFor="name" className="modal__label">
         Name
@@ -95,9 +40,10 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
           type="text"
           className="modal__input"
           id="name"
+          name="name"
           placeholder="Name"
-          value={name}
-          onChange={handleNameChange}
+          value={values.name || ""}
+          onChange={handleChange}
           required
         />
         {errors.name && <span className="modal__error">{errors.name}</span>}
@@ -108,9 +54,10 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
           type="url"
           className="modal__input"
           id="imageUrl"
+          name="imageUrl"
           placeholder="Image URL"
-          value={imageUrl}
-          onChange={handleImageUrlChange}
+          value={values.imageUrl || ""}
+          onChange={handleChange}
           required
         />
         {errors.imageUrl && (
@@ -127,12 +74,12 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
           >
             <input
               className="modal__radio"
-              name="weatherType"
+              name="weather"
               id={type}
               type="radio"
               value={type}
-              checked={weather === type}
-              onChange={handleWeatherChange}
+              checked={values.weather === type}
+              onChange={handleChange}
             />
             <span className="modal__label_text">{type}</span>
           </label>

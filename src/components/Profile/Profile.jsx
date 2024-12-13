@@ -1,7 +1,5 @@
 import "./Profile.css";
 import SideBar from "../SideBar/SideBar";
-// import SideBar from "../../SideBar/SideBar.jsx";
-
 import ClothesSection from "../ClothesSection/ClothesSection";
 import avatar from "../../assets/images_header/self_pixel_art.png";
 

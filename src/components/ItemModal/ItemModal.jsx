@@ -2,21 +2,19 @@ import "./ItemModal.css";
 import closeBtnLight from "../../assets/close-btn--light.png";
 
 function ItemModal({ isOpen, onClose, card, onDeleteItem }) {
-  console.log("[ItemModal] Props on render:", { isOpen, card });
-
   const handleDelete = () => {
     if (onDeleteItem) {
-      console.log("[ItemModal] Deleting card:", card);
-      onDeleteItem(card);
+      onDeleteItem(card)
+        .then(() => {
+          onClose();
+        })
+        .catch((err) => {
+          console.error("[ItemModal] Error during deletion:", err);
+        });
     } else {
-      console.error("[ItemModal] onDeleteItem is undefined");
+      console.error("[ItemModal] onDeleteItem is not defined.");
     }
   };
-
-  if (!isOpen || !card) {
-    console.log("[ItemModal] Modal is not open or card data is missing");
-    return null;
-  }
 
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""} modal--item`}>

@@ -1,15 +1,8 @@
 .modal--item {
   font-family: "Cabinet Grotesk", Arial, sans-serif;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.3);
-  visibility: hidden;
   width: 100%;
   height: 100%;
-  overflow: auto;
 }
 
 .modal_opened {
@@ -20,18 +13,20 @@
   position: relative;
   background-color: #ffffff;
   border-radius: 20px;
-  box-sizing: border-box;
   overflow: hidden;
   max-width: 498px;
   width: 100%;
-  height: 610px;
   font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  height: 610px;
 }
 
 .item-modal__image {
   width: 100%;
-  height: auto;
-  display: block;
+  flex: 1 1 auto;
+  max-height: calc(100% - 112px);
 }
 
 .item-modal__close {
