@@ -133,16 +133,22 @@
       "_id": 59
     },
     {
-      "name": "Hoodie",
-      "imageUrl": "https://cdn.pixabay.com/photo/2014/06/03/19/38/board-361516_1280.jpg",
-      "weather": "cold",
-      "_id": 60
-    },
-    {
       "name": "Hoodie3333",
       "imageUrl": "https://picsum.photos/536/354",
       "weather": "cold",
       "_id": 62
+    },
+    {
+      "name": "some clothes",
+      "imageUrl": "https://via.placeholder.com/150",
+      "weather": "cold",
+      "_id": 63
+    },
+    {
+      "name": "some clothes",
+      "imageUrl": "https://cdn.pixabay.com/photo/2014/06/03/19/38/board-361516_1280.jpg",
+      "weather": "cold",
+      "_id": 64
     }
   ]
 }

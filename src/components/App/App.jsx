@@ -49,7 +49,7 @@ function App() {
       })
       .catch((err) => {
         console.error("Error fetching items:", err);
-        alert("Failed to fetch items. Please try again.");
+        alert("Failed to fetch items.");
       })
       .finally(() => {
         setLoading(false);
@@ -65,6 +65,7 @@ function App() {
       })
       .catch((err) => {
         console.error("Error fetching weather data:", err);
+        alert("Unable to fetch weather data.");
       })
       .finally(() => {
         setLoading(false);
