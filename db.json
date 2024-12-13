@@ -73,58 +73,16 @@
       "_id": 32
     },
     {
-      "name": "Touque",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Beanie.png?etag=bc10497cc80fa557f036e94f9999f7b2",
-      "weather": "cold",
-      "_id": 34
-    },
-    {
-      "name": "dd",
-      "imageUrl": "https://images.unsplash.com/photo-1486825586573-7131f7991bdd?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGVzdHxlbnwwfHwwfHx8MA%3D%3D",
-      "weather": "cold",
-      "_id": 38
-    },
-    {
       "name": "34",
       "imageUrl": "https://picsum.photos/536/354",
       "weatherType": "cold",
       "_id": 39
     },
     {
-      "name": "some clothes",
-      "weatherType": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sunglasses.png?etag=a1bced9e331d36cb278c45df51150432",
-      "_id": 41
-    },
-    {
-      "name": "some clothes",
-      "imageUrl": "https://cdn.pixabay.com/photo/2014/06/03/19/38/board-361516_1280.jpg",
-      "weather": "cold",
-      "_id": 43
-    },
-    {
       "name": "Touque",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Beanie.png?etag=bc10497cc80fa557f036e94f9999f7b2",
       "weather": "cold",
       "_id": 44
-    },
-    {
-      "name": "Touque",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sunglasses.png?etag=a1bced9e331d36cb278c45df51150432",
-      "weather": "cold",
-      "_id": 45
-    },
-    {
-      "name": "Touque",
-      "imageUrl": "https://cdn.pixabay.com/photo/2014/06/03/19/38/board-361516_1280.jpg",
-      "weather": "cold",
-      "_id": 46
-    },
-    {
-      "name": "Touque",
-      "imageUrl": "https://cdn.pixabay.com/photo/2014/06/03/19/38/board-361516_1280.jpg",
-      "weather": "cold",
-      "_id": 48
     },
     {
       "name": "Touque",
@@ -149,6 +107,42 @@
       "imageUrl": "https://cdn.pixabay.com/photo/2014/06/03/19/38/board-361516_1280.jpg",
       "weather": "cold",
       "_id": 52
+    },
+    {
+      "name": "Hoodie",
+      "imageUrl": "https://cdn.pixabay.com/photo/2014/06/03/19/38/board-361516_1280.jpg",
+      "weather": "cold",
+      "_id": 53
+    },
+    {
+      "name": "Touque",
+      "imageUrl": "https://picsum.photos/536/354",
+      "weather": "cold",
+      "_id": 57
+    },
+    {
+      "name": "something",
+      "weather": "cold",
+      "imageUrl": "https://picsum.photos/536/354",
+      "_id": 58
+    },
+    {
+      "name": "dd",
+      "imageUrl": "https://picsum.photos/536/354",
+      "weather": "cold",
+      "_id": 59
+    },
+    {
+      "name": "Hoodie",
+      "imageUrl": "https://cdn.pixabay.com/photo/2014/06/03/19/38/board-361516_1280.jpg",
+      "weather": "cold",
+      "_id": 60
+    },
+    {
+      "name": "Hoodie3333",
+      "imageUrl": "https://picsum.photos/536/354",
+      "weather": "cold",
+      "_id": 62
     }
   ]
 }

@@ -77,8 +77,7 @@ function App() {
   };
 
   const handleAddItemSubmit = (item) => {
-    setLoading(true);
-    addItem(item)
+    return addItem(item)
       .then((newItem) => {
         const completeItem = {
           ...newItem,
@@ -90,14 +89,11 @@ function App() {
       })
       .catch((err) => {
         console.error("Error adding item:", err);
-      })
-      .finally(() => {
-        setLoading(false);
       });
   };
 
   const handleCardDelete = (card) => {
-    deleteItem(card._id)
+    return deleteItem(card._id)
       .then(() => {
         setClothingItems((prevItems) =>
           prevItems.filter((item) => item._id !== card._id)
@@ -127,6 +123,7 @@ function App() {
   const openConfirmationModal = (card) => {
     setCardToDelete(card);
     setConfirmationModalOpen(true);
+    return Promise.resolve();
   };
 
   // ?
@@ -144,7 +141,6 @@ function App() {
           >
             <Header handleAddClick={handleAddClick} weatherData={weatherData} />
             {loading && <div className="loading">Loading...</div>}{" "}
-            {/* Loading indicator */}
             <Routes>
               <Route
                 path="/"

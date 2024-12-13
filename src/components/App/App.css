@@ -3,6 +3,8 @@
   flex-direction: column;
 }
 .page__content {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
   background-color: #f3f3f3;
   padding: 0 40px;
   min-width: 1360px;

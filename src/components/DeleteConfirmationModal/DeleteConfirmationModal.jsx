@@ -7,7 +7,7 @@ function DeleteConfirmationModal({ isOpen, onClose, onConfirm, card }) {
     if (onConfirm) {
       onConfirm(card)
         .then(() => {
-          closeActiveModal();
+          onClose();
         })
         .catch((err) => {
           console.error("Error deleting item:", err);

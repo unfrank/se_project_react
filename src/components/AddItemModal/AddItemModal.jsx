@@ -10,10 +10,14 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isValid) {
+      if (typeof onAddItem !== "function") {
+        console.error("onAddItem is not a valid function!");
+        return;
+      }
       onAddItem(values)
         .then(() => {
           resetForm();
-          closeActiveModal();
+          onCloseModal();
         })
         .catch((err) => {
           console.error("Error adding item:", err);

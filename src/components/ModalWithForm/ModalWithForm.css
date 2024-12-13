@@ -1,5 +1,4 @@
 .modal {
-  font-family: "Cabinet Grotesk", Arial, sans-serif;
   display: flex;
   position: fixed;
   inset: 0;
@@ -28,7 +27,6 @@
 }
 
 .modal__title {
-  font-weight: 700;
   font-size: 16px;
   line-height: 20px;
   color: #000;
@@ -101,7 +99,6 @@
 }
 
 .modal__label {
-  font-weight: 700;
   font-size: 16px;
   line-height: 20px;
   position: relative;
