@@ -78,19 +78,14 @@ function App() {
   };
 
   const handleAddItemSubmit = (item) => {
-    return addItem(item)
-      .then((newItem) => {
-        const completeItem = {
-          ...newItem,
-          link: newItem.imageUrl,
-          weather: newItem.weather,
-        };
-        setClothingItems([completeItem, ...clothingItems]);
-        closeActiveModal();
-      })
-      .catch((err) => {
-        console.error("Error adding item:", err);
-      });
+    return addItem(item).then((newItem) => {
+      const completeItem = {
+        ...newItem,
+        link: newItem.imageUrl,
+        weather: newItem.weather,
+      };
+      setClothingItems([completeItem, ...clothingItems]);
+    });
   };
 
   const handleCardDelete = (card) => {
@@ -120,14 +115,12 @@ function App() {
     setCurrentTemperatureUnit((prevUnit) => (prevUnit === "C" ? "F" : "C"));
   };
 
-  // ?
   const openConfirmationModal = (card) => {
     setCardToDelete(card);
     setConfirmationModalOpen(true);
     return Promise.resolve();
   };
 
-  // ?
   const closeConfirmationModal = () => {
     setCardToDelete(null);
     setConfirmationModalOpen(false);
