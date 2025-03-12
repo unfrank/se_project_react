@@ -12,17 +12,23 @@ export const getItems = () => {
 };
 
 export const addItem = (item) => {
+  const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(item),
   }).then(handleResponse);
 };
 
 export const deleteItem = (id) => {
+  const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
   }).then(handleResponse);
 };
