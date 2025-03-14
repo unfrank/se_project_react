@@ -81,7 +81,7 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
           name="avatar"
           value={values.avatar || ""}
           onChange={handleChange}
-          required
+          // required
         />
         {errors.avatar && <span className="modal__error">{errors.avatar}</span>}
       </label>

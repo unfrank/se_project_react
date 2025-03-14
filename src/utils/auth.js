@@ -6,31 +6,20 @@ const handleResponse = (res) => {
   }
   return Promise.reject(`Error: ${res.status} ${res.statusText}`);
 };
-export const register = ({ email, password, name, avatar }) => {
-  console.log("🟡 Sending /signup request with:", {
-    email,
-    password,
-    name,
-    avatar,
-  });
 
+export const register = (email, password, name, avatar = "") => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password, name, avatar }),
-  })
-    .then((res) => {
-      console.log("🟡 Server response status:", res.status);
-      return res.json(); // Convert response to JSON
-    })
-    .then((data) => {
-      console.log("✅ Registration API success. Response data:", data);
-      return data;
-    })
-    .catch((err) => {
-      console.error("❌ Registration API failed:", err);
-      throw err;
-    });
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email,
+      password,
+      name,
+      avatar: avatar || "",
+    }),
+  }).then(handleResponse);
 };
 
 export const login = ({ email, password }) => {
@@ -41,7 +30,7 @@ export const login = ({ email, password }) => {
   })
     .then(handleResponse)
     .then((data) => {
-      localStorage.setItem("user", JSON.stringify(data)); // Store user in localStorage
+      localStorage.setItem("user", JSON.stringify(data));
       return data;
     });
 };

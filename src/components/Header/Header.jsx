@@ -1,9 +1,8 @@
 import "./Header.css";
 import logo from "../../assets/images_header/logo.svg";
-import avatarPlaceholder from "../../assets/images_header/self_pixel_art.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function Header({ handleAddClick, weatherData, onLogout, onLogin, onSignUp }) {
@@ -36,11 +35,17 @@ function Header({ handleAddClick, weatherData, onLogout, onLogin, onSignUp }) {
             </button>
             <div className="header__profile">
               <p className="header__username">{currentUser?.name || "User"}</p>
-              <img
-                src={currentUser?.avatar || avatarPlaceholder}
-                alt="User Profile"
-                className="header__avatar"
-              />
+              {currentUser?.avatar ? (
+                <img
+                  src={currentUser.avatar}
+                  alt="User Profile"
+                  className="header__avatar"
+                />
+              ) : (
+                <div className="header__avatar header__avatar--fallback">
+                  {currentUser.name[0].toUpperCase()}
+                </div>
+              )}
             </div>
           </>
         ) : (

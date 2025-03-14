@@ -76,13 +76,11 @@ function App() {
       })
       .catch(() => {
         console.log("❌ Invalid token. Logging out.");
-        localStorage.removeItem("jwt"); // This should clear an invalid token
-        setIsLoggedIn(false);
+        localStorage.removeItem("jwt");
         setCurrentUser(null);
       });
   }, []);
 
-  // 🔄 Load Clothing Items
   useEffect(() => {
     console.log("🔄 Fetching clothing items...");
     setLoading(true);
@@ -101,7 +99,7 @@ function App() {
   const handleAddItem = async (newItem) => {
     console.log("🟡 Attempting to add item:", newItem);
     try {
-      const savedItem = await addItem(newItem); // Wait for API response
+      const savedItem = await addItem(newItem);
       console.log("✅ Successfully added item:", savedItem);
 
       setClothingItems((prevItems) => {
@@ -110,13 +108,12 @@ function App() {
         return updatedItems;
       });
 
-      setActiveModal(""); // Close modal after state updates
+      setActiveModal("");
     } catch (err) {
       console.error("❌ Error adding item:", err);
     }
   };
 
-  // 🔄 Load Weather Data
   useEffect(() => {
     console.log("🌦 Fetching weather data...");
     getWeather(coordinates, apiKey)
@@ -127,36 +124,25 @@ function App() {
       .catch(() => console.error("❌ Unable to fetch weather data."));
   }, []);
 
-  // ✅ Handle Temperature Unit Toggle
   const handleToggleSwitchChange = () => {
     console.log("🔄 Toggling temperature unit...");
     setCurrentTemperatureUnit((prevUnit) => (prevUnit === "C" ? "F" : "C"));
   };
 
-  // ✅ Handle User Registration
-  const handleRegister = (userData) => {
-    console.log("🔄 Registering user:", userData);
-    return register(userData)
-      .then((res) => {
-        console.log("✅ Registration response:", res);
-
-        if (!res.user || !res.token) {
-          console.error("❌ Error: No user or token in response!");
-          return;
-        }
-
-        localStorage.setItem("jwt", res.token);
-        setCurrentUser({ ...res.user }); // Force UI update
+  const handleRegister = ({ email, password, name, avatar }) => {
+    register(email, password, name, avatar)
+      .then((data) => {
+        console.log("✅ Registration successful:", data);
+        setCurrentUser(data.user);
         setIsLoggedIn(true);
+        localStorage.setItem("jwt", data.token);
         setActiveModal("");
       })
       .catch((err) => {
         console.error("❌ Registration failed:", err);
-        throw err;
       });
   };
 
-  // ✅ Handle User Login (Forces Immediate UI Update)
   const handleLogin = async (credentials) => {
     console.log("🟢 LoginModal passed credentials:", credentials);
 
@@ -170,18 +156,14 @@ function App() {
 
     setCurrentUser(credentials.user);
     setIsLoggedIn(true);
-
-    // ❌ No setActiveModal(""); here, modal remains open
   };
 
   const handleLogout = () => {
     console.log("🔄 Logging out...");
 
-    // ✅ Remove token from localStorage
     localStorage.removeItem("jwt");
     localStorage.removeItem("user");
 
-    // ✅ Reset state
     setCurrentUser(null);
     setIsLoggedIn(false);
 
@@ -201,7 +183,7 @@ function App() {
                 onLogout={handleLogout}
                 onLogin={() => setActiveModal("login")}
                 onSignUp={() => setActiveModal("register")}
-                onAddItem={() => setActiveModal("add-garment")} // <-- Pass function to open AddItemModal
+                onAddItem={() => setActiveModal("add-garment")}
               />
 
               {loading && <div className="loading">Loading...</div>}
