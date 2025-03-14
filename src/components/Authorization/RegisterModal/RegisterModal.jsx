@@ -15,17 +15,16 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setAuthError("");
-
-    console.log("🟡 Registering user with data:", values); // 🔥 Step 1 Debug
+    console.log("🟡 Register form submitted! Sending data:", values); // Debug log
 
     onRegister(values)
       .then((res) => {
-        console.log("✅ Registration successful. Server response:", res); // 🔥 Step 2 Debug
+        console.log("✅ Successfully registered:", res);
         resetForm();
         onClose();
       })
       .catch((err) => {
-        console.error("❌ Registration Error:", err); // 🔥 Step 3 Debug
+        console.error("❌ Registration failed:", err);
         setAuthError("Error during registration");
       });
   };

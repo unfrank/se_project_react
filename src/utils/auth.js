@@ -12,24 +12,23 @@ export const register = ({ email, password, name, avatar }) => {
     password,
     name,
     avatar,
-  }); // 🔥 Step 1 Debug
+  });
 
-  console.log("🔍 Debug: register function:", register);
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password, name, avatar }),
   })
     .then((res) => {
-      console.log("🟡 Server response status:", res.status); // 🔥 Step 2 Debug
-      return handleResponse(res);
+      console.log("🟡 Server response status:", res.status);
+      return res.json(); // Convert response to JSON
     })
     .then((data) => {
-      console.log("✅ Registration API success. Response data:", data); // 🔥 Step 3 Debug
+      console.log("✅ Registration API success. Response data:", data);
       return data;
     })
     .catch((err) => {
-      console.error("❌ Registration API failed:", err); // 🔥 Step 4 Debug
+      console.error("❌ Registration API failed:", err);
       throw err;
     });
 };
@@ -39,7 +38,12 @@ export const login = ({ email, password }) => {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
-  }).then(handleResponse);
+  })
+    .then(handleResponse)
+    .then((data) => {
+      localStorage.setItem("user", JSON.stringify(data)); // Store user in localStorage
+      return data;
+    });
 };
 
 export const checkToken = (token) => {
