@@ -34,6 +34,8 @@ const LoginModal = ({ isOpen, onClose, onAuthSuccess }) => {
       onClose={onClose}
       onSubmit={handleSubmit}
       disabled={!isValid}
+      className="login__modal"
+      buttonClass="login-modal__submit "
     >
       {authError && <span className="modal__error">{authError}</span>}
       <label className="modal__label">
@@ -44,6 +46,7 @@ const LoginModal = ({ isOpen, onClose, onAuthSuccess }) => {
           value={values.email || ""}
           onChange={handleChange}
           required
+          className="modal__input"
         />
         {errors.email && <span className="modal__error">{errors.email}</span>}
       </label>
@@ -55,6 +58,7 @@ const LoginModal = ({ isOpen, onClose, onAuthSuccess }) => {
           value={values.password || ""}
           onChange={handleChange}
           required
+          className="modal__input"
         />
         {errors.password && (
           <span className="modal__error">{errors.password}</span>

@@ -1,0 +1,26 @@
+.login__modal .modal__content {
+  min-width: 496px;
+  max-height: 304px;
+  width: 100%;
+  align-content: left;
+  text-align: left;
+  /* position: relative; */
+  /* padding: 0;
+  margin: 0; */
+  /* padding-right: auto; */
+  /* margin-right: auto; */
+}
+
+.modal__close {
+  top: 28px;
+}
+
+.modal__submit.login-modal__submit {
+  /* margin-top: 11px; */
+  width: 73px;
+  position: absolute;
+  bottom: 36px; /* 36px from the bottom */
+  left: 28px; /* 28px from the left */
+  /* max-width: 73px; */
+  /* width: auto; */
+}
