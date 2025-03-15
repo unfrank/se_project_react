@@ -1,12 +1,67 @@
+// import "./ItemModal.css";
+// import closeBtnLight from "../../assets/close-btn--light.png";
+
+// function ItemModal({ isOpen, onClose, card, onDeleteItem }) {
+//   const handleDelete = () => {
+//     if (onDeleteItem) {
+//       onDeleteItem(card);
+//     }
+//   };
+
+//   console.log("🟡 ItemModal received props:", { isOpen, card });
+
+//   return (
+//     <div className={`modal ${isOpen ? "modal_opened" : ""} modal--item`}>
+//       <div className="item-modal__content">
+//         <button onClick={onClose} type="button" className="modal__close">
+//           <img src={closeBtnLight} alt="Close Modal Button" />
+//         </button>
+//         <img
+//           src={card?.imageUrl || ""}
+//           alt={card?.name || "No name"}
+//           className="item-modal__image"
+//         />
+//         <div className="item-modal__footer">
+//           <h2 className="item-modal__caption">
+//             {card?.name || "Unnamed Item"}
+//           </h2>
+//           <p className="item-modal__weather">
+//             Weather: {card?.weather || "N/A"}
+//             <button
+//               className="item-modal__delete-button"
+//               onClick={handleDelete}
+//             >
+//               Delete item
+//             </button>
+//           </p>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default ItemModal;
+
+//! remake
+
 import "./ItemModal.css";
 import closeBtnLight from "../../assets/close-btn--light.png";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function ItemModal({ isOpen, onClose, card, onDeleteItem }) {
+  const { isLoggedIn, currentUser } = useContext(CurrentUserContext);
+
+  // Ensure the delete button only appears for the item's owner
+  const isOwner = card?.owner === currentUser?._id;
+
   const handleDelete = () => {
     if (onDeleteItem) {
       onDeleteItem(card);
     }
   };
+
+  console.log("🟡 ItemModal received props:", { isOpen, card, isLoggedIn });
 
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""} modal--item`}>
@@ -15,16 +70,27 @@ function ItemModal({ isOpen, onClose, card, onDeleteItem }) {
           <img src={closeBtnLight} alt="Close Modal Button" />
         </button>
         <img
-          src={card.imageUrl}
-          alt={card.name}
+          src={card?.imageUrl || ""}
+          alt={card?.name || "No name"}
           className="item-modal__image"
         />
         <div className="item-modal__footer">
-          <h2 className="item-modal__caption">{card.name}</h2>
-          <p className="item-modal__weather">Weather: {card.weather}</p>
-          <button className="item-modal__delete-button" onClick={handleDelete}>
-            Delete item
-          </button>
+          <h2 className="item-modal__caption">
+            {card?.name || "Unnamed Item"}
+          </h2>
+          <p className="item-modal__weather">
+            Weather: {card?.weather || "N/A"}
+          </p>
+
+          {/* Show delete button only if user is logged in and is the item's owner */}
+          {isLoggedIn && isOwner && (
+            <button
+              className="item-modal__delete-button"
+              onClick={handleDelete}
+            >
+              Delete item
+            </button>
+          )}
         </div>
       </div>
     </div>

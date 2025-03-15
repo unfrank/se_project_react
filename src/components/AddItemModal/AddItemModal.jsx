@@ -29,6 +29,8 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
     if (isOpen) resetForm();
   }, [isOpen, resetForm]);
 
+  console.log("🔍 AddItemModal isOpen state:", isOpen);
+
   return (
     <ModalWithForm
       title="New Garment"
