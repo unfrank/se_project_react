@@ -235,11 +235,6 @@ function App() {
                 onAddItem={handleAddItem}
                 onCloseModal={() => setActiveModal("")}
               />
-              {/* <ItemModal
-                isOpen={activeModal === "preview"}
-                card={selectedCard}
-                onClose={() => setActiveModal("")}
-              /> */}
               <ItemModal
                 isOpen={activeModal === "preview"}
                 card={selectedCard}
@@ -259,8 +254,8 @@ function App() {
               <LoginModal
                 isOpen={activeModal === "login"}
                 onClose={() => setActiveModal("")}
+                setActiveModal={setActiveModal}
                 onAuthSuccess={(credentials) => {
-                  console.log("🟢 LoginModal passed credentials:", credentials);
                   handleLogin(credentials);
                 }}
               />

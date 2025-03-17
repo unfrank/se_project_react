@@ -37,8 +37,10 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
       onClose={onClose}
       onSubmit={handleSubmit}
       disabled={!isValid}
+      className="register__modal"
     >
       {authError && <span className="modal__error">{authError}</span>}
+
       <label className="modal__label">
         Email
         <input
@@ -47,6 +49,7 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
           value={values.email || ""}
           onChange={handleChange}
           required
+          className="modal__input"
         />
         {errors.email && <span className="modal__error">{errors.email}</span>}
       </label>
@@ -58,6 +61,7 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
           value={values.password || ""}
           onChange={handleChange}
           required
+          className="modal__input"
         />
         {errors.password && (
           <span className="modal__error">{errors.password}</span>
@@ -71,6 +75,7 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
           value={values.name || ""}
           onChange={handleChange}
           required
+          className="modal__input"
         />
         {errors.name && <span className="modal__error">{errors.name}</span>}
       </label>
@@ -81,6 +86,7 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
           name="avatar"
           value={values.avatar || ""}
           onChange={handleChange}
+          className="modal__input"
           // required
         />
         {errors.avatar && <span className="modal__error">{errors.avatar}</span>}

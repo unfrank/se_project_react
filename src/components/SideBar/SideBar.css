@@ -1,10 +1,11 @@
-.sidebar {
+/* .sidebar {
   display: flex;
   align-items: center;
   gap: 16px;
   white-space: nowrap;
   padding-top: 20px;
   max-width: 100%;
+  background-color: pink;
 }
 
 .sidebar__avatar {
@@ -17,4 +18,43 @@
   font-size: 20px;
   color: black;
   margin: 0;
+}
+ */
+
+/* !remake */
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  min-width: 250px;
+}
+
+.sidebar__avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+}
+
+.sidebar__username {
+  font-size: 20px;
+  color: black;
+  margin: 0;
+}
+
+.sidebar__button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: white;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.sidebar__logout {
+  color: red;
+  border-color: red;
 }

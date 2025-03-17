@@ -4,7 +4,7 @@ import ModalWithForm from "../../ModalWithForm/ModalWithForm";
 import { useFormAndValidation } from "../../../hooks/useFormValidation";
 import { login } from "../../../utils/auth";
 
-const LoginModal = ({ isOpen, onClose, onAuthSuccess }) => {
+const LoginModal = ({ isOpen, onClose, onAuthSuccess, setActiveModal }) => {
   const { values, handleChange, errors, isValid, resetForm } =
     useFormAndValidation();
   const [authError, setAuthError] = useState("");
@@ -29,15 +29,14 @@ const LoginModal = ({ isOpen, onClose, onAuthSuccess }) => {
   return (
     <ModalWithForm
       title="Log In"
-      buttonText="Log In"
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      disabled={!isValid}
       className="login__modal"
-      buttonClass="login-modal__submit "
+      hideSubmitButton={true} // 👈 Hide submit button for login modal
     >
       {authError && <span className="modal__error">{authError}</span>}
+
       <label className="modal__label">
         Email
         <input
@@ -50,6 +49,7 @@ const LoginModal = ({ isOpen, onClose, onAuthSuccess }) => {
         />
         {errors.email && <span className="modal__error">{errors.email}</span>}
       </label>
+
       <label className="modal__label">
         Password
         <input
@@ -64,8 +64,27 @@ const LoginModal = ({ isOpen, onClose, onAuthSuccess }) => {
           <span className="modal__error">{errors.password}</span>
         )}
       </label>
+
+      {/* Custom buttons inside login modal */}
+      <div className="login-modal__actions">
+        <button type="submit" className="login-modal__submit">
+          Log In
+        </button>
+        <button
+          type="button"
+          className="login-modal__register-btn"
+          onClick={() => {
+            onClose();
+            setActiveModal("register");
+          }}
+        >
+          or Register
+        </button>
+      </div>
     </ModalWithForm>
   );
 };
 
 export default LoginModal;
+
+//! remake

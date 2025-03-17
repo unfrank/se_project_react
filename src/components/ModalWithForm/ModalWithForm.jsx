@@ -3,14 +3,13 @@ import closeBtn from "../../assets/close-btn--dark.png";
 
 function ModalWithForm({
   title,
-  buttonText,
   isOpen,
   onClose,
   onSubmit,
   disabled,
   className = "",
   children,
-  buttonClass = "",
+  hideSubmitButton = false,
 }) {
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""} ${className}`}>
@@ -21,16 +20,11 @@ function ModalWithForm({
         <h2 className="modal__title">{title}</h2>
         <form className="modal__form" onSubmit={onSubmit}>
           {children}
-          {/* <button type="submit" className="modal__submit" disabled={disabled}>
-            {buttonText}
-          </button> */}
-          <button
-            type="submit"
-            className={`modal__submit ${buttonClass || ""}`}
-            disabled={disabled}
-          >
-            {buttonText}
-          </button>
+          {!hideSubmitButton && ( // 👈 Only show if hideSubmitButton is false
+            <button type="submit" className="modal__submit" disabled={disabled}>
+              Submit
+            </button>
+          )}
         </form>
       </div>
     </div>
