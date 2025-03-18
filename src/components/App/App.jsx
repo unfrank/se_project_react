@@ -223,7 +223,12 @@ function App() {
                 <Route element={<ProtectedRoute isLoggedIn={isLoggedIn} />}>
                   <Route
                     path="/profile"
-                    element={<Profile clothingItems={clothingItems} />}
+                    element={
+                      <Profile
+                        clothingItems={clothingItems}
+                        onAddItem={() => setActiveModal("add-garment")}
+                      />
+                    }
                   />
                 </Route>
                 <Route path="*" element={<Navigate to="/" />} />

@@ -29,9 +29,8 @@ function Header({ weatherData, onLogout, onLogin, onSignUp, onAddItem }) {
           <>
             <button
               onClick={() => {
-                console.log("🟡 `+ Add Clothes` button clicked!");
                 if (typeof onAddItem === "function") {
-                  onAddItem(); // ✅ Correctly calls the function from App.jsx
+                  onAddItem();
                 } else {
                   console.error("❌ `onAddItem` is not a function!");
                 }
@@ -41,15 +40,7 @@ function Header({ weatherData, onLogout, onLogin, onSignUp, onAddItem }) {
             >
               + Add Clothes
             </button>
-
-            <button
-              onClick={onLogout}
-              type="button"
-              className="header__logout-btn"
-            >
-              Log Out
-            </button>
-            <div className="header__profile">
+            <Link to="/profile" className="header__profile">
               <p className="header__username">{currentUser?.name || "User"}</p>
               {currentUser?.avatar ? (
                 <img
@@ -62,7 +53,7 @@ function Header({ weatherData, onLogout, onLogin, onSignUp, onAddItem }) {
                   {currentUser.name[0].toUpperCase()}
                 </div>
               )}
-            </div>
+            </Link>
           </>
         ) : (
           <>
