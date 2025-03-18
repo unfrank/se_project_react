@@ -1,5 +1,4 @@
 import "./ModalWithForm.css";
-import closeBtn from "../../assets/close-btn--dark.png";
 
 function ModalWithForm({
   title,
@@ -20,7 +19,7 @@ function ModalWithForm({
         <h2 className="modal__title">{title}</h2>
         <form className="modal__form" onSubmit={onSubmit}>
           {children}
-          {!hideSubmitButton && ( // 👈 Only show if hideSubmitButton is false
+          {!hideSubmitButton && (
             <button type="submit" className="modal__submit" disabled={disabled}>
               Submit
             </button>
