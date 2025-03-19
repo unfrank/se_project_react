@@ -5,11 +5,16 @@
 // import SideBar from "../SideBar/SideBar";
 // import ClothesSection from "../ClothesSection/ClothesSection";
 
-// function Profile({ clothingItems, onAddItem, handleCardClick }) {
+// function Profile({
+//   clothingItems,
+//   onAddItem,
+//   handleCardClick,
+//   setActiveModal,
+// }) {
 //   const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
 
 //   if (!isLoggedIn || !currentUser) {
-//     return <div>Loading...</div>; // Prevents errors if currentUser is not loaded
+//     return <div>Loading...</div>;
 //   }
 
 //   return (
@@ -18,26 +23,23 @@
 //         username={currentUser.name}
 //         avatar={currentUser.avatar}
 //         onLogout={() => {
-//           console.log("Logging out...");
 //           localStorage.removeItem("jwt");
 //           window.location.reload();
 //         }}
+//         setActiveModal={setActiveModal}
 //       />
-
-//       <div className="profile__content">
-//         <ClothesSection
-//           clothingItems={clothingItems}
-//           onAddItem={onAddItem}
-//           handleCardClick={handleCardClick}
-//         />
-//       </div>
+//       <ClothesSection
+//         clothingItems={clothingItems}
+//         onAddItem={onAddItem}
+//         handleCardClick={handleCardClick}
+//       />
 //     </div>
 //   );
 // }
 
 // export default Profile;
 
-//! remake
+//!remake
 
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
@@ -46,7 +48,12 @@ import "./Profile.css";
 import SideBar from "../SideBar/SideBar";
 import ClothesSection from "../ClothesSection/ClothesSection";
 
-function Profile({ clothingItems, onAddItem, handleCardClick }) {
+function Profile({
+  clothingItems,
+  onAddItem,
+  handleCardClick,
+  setActiveModal,
+}) {
   const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
 
   if (!isLoggedIn || !currentUser) {
@@ -55,7 +62,6 @@ function Profile({ clothingItems, onAddItem, handleCardClick }) {
 
   return (
     <div className="profile">
-      {/* Sidebar takes only needed space */}
       <SideBar
         username={currentUser.name}
         avatar={currentUser.avatar}
@@ -63,9 +69,8 @@ function Profile({ clothingItems, onAddItem, handleCardClick }) {
           localStorage.removeItem("jwt");
           window.location.reload();
         }}
+        setActiveModal={setActiveModal}
       />
-
-      {/* Clothes section dynamically expands */}
       <ClothesSection
         clothingItems={clothingItems}
         onAddItem={onAddItem}

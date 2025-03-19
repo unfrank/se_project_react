@@ -138,3 +138,19 @@
 .modal__radio {
   cursor: pointer;
 }
+
+/*Change Profile Modal */
+.change-profile__modal .modal__content {
+  max-height: 304px;
+  position: relative;
+  flex-direction: column;
+  margin: 0;
+}
+
+.change-profile__modal .modal__submit {
+  position: absolute; /* Ensure it aligns within the modal */
+  bottom: 36px; /* Moves the button to 36px from the bottom */
+  left: 28px;
+  margin: 0;
+  padding: 0;
+}

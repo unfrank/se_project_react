@@ -28,3 +28,10 @@
   border-radius: inherit;
   object-fit: cover;
 }
+
+.item-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Adjust spacing between items */
+  justify-content: center; /* Center align items */
+}

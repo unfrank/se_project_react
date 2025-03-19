@@ -72,3 +72,46 @@
 .item-modal__delete-button:hover {
   color: #ff0000;
 }
+
+/* not BEM */
+.item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.item__details {
+  position: absolute;
+  top: 15px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.item__like-button {
+  border: none;
+  cursor: pointer;
+  justify-content: center;
+  justify-items: center;
+  display: flex;
+  align-items: center;
+  background-color: inherit;
+}
+
+.item__like-icon {
+  width: 18px;
+  height: 15px;
+  /* background-color: pink; */
+}
+.item__details-title {
+  background: white;
+  padding-left: 10px;
+  padding-right: 10px;
+}
