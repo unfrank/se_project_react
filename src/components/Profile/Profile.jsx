@@ -53,12 +53,18 @@ function Profile({
   onAddItem,
   handleCardClick,
   setActiveModal,
+  onCardLike,
+  // currentUser,
 }) {
   const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
 
   if (!isLoggedIn || !currentUser) {
     return <div>Loading...</div>;
   }
+
+  const userItems = clothingItems.filter(
+    (item) => item.owner === currentUser._id
+  );
 
   return (
     <div className="profile">
@@ -72,9 +78,10 @@ function Profile({
         setActiveModal={setActiveModal}
       />
       <ClothesSection
-        clothingItems={clothingItems}
+        clothingItems={userItems}
         onAddItem={onAddItem}
         handleCardClick={handleCardClick}
+        onCardLike={onCardLike}
       />
     </div>
   );
