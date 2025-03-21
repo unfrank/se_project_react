@@ -24,17 +24,13 @@ function SideBar({ onLogout, setActiveModal }) {
       <button
         className="sidebar__button"
         onClick={() => {
-          console.log("Sidebar button clicked");
           setActiveModal("edit-profile");
         }}
       >
         Change Profile Data
       </button>
 
-      <button
-        className="sidebar__button sidebar__button_logout"
-        onClick={onLogout}
-      >
+      <button className="sidebar__button" onClick={onLogout}>
         Log Out
       </button>
     </div>

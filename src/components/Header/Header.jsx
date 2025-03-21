@@ -36,7 +36,7 @@ function Header({ weatherData, onLogin, onSignUp, onAddItem }) {
   return (
     <header className="header">
       <Link to="/" className="header__logo">
-        <img className="header__logo" src={logo} alt="WTWR Logo" />
+        <img src={logo} alt="WTWR Logo" />
       </Link>
       <p className="header__date-and-location">
         {currentDate}, {weatherData.city}
