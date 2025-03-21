@@ -1,30 +1,22 @@
-import "./RegisterModal.css";
 import React, { useState, useContext } from "react";
 import ModalWithForm from "../../ModalWithForm/ModalWithForm";
 import { useFormAndValidation } from "../../../hooks/useFormValidation";
-import { register } from "../../../utils/auth";
-
-import CurrentUserContext from "../../../contexts/CurrentUserContext";
 
 const RegisterModal = ({ isOpen, onClose, onRegister }) => {
   const { values, handleChange, errors, isValid, resetForm } =
     useFormAndValidation();
   const [authError, setAuthError] = useState("");
-  const { setCurrentUser } = useContext(CurrentUserContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setAuthError("");
-    console.log("🟡 Register form submitted! Sending data:", values); // Debug log
 
     onRegister(values)
       .then((res) => {
-        console.log("✅ Successfully registered:", res);
         resetForm();
         onClose();
       })
       .catch((err) => {
-        console.error("❌ Registration failed:", err);
         setAuthError("Error during registration");
       });
   };
@@ -87,7 +79,6 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
           value={values.avatar || ""}
           onChange={handleChange}
           className="modal__input"
-          // required
         />
         {errors.avatar && <span className="modal__error">{errors.avatar}</span>}
       </label>

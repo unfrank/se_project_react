@@ -2,13 +2,15 @@
   display: flex;
   position: relative;
   height: 80px;
-  border-radius: 12px;
-  overflow: hidden;
+  /* border-radius: 12px; */
+  /* overflow: hidden; */
+  /* justify-content: center; */
+  /* align-items: center; */
 }
 
 .weather-card__temp {
   position: absolute;
-  top: 20px;
+  top: 22px;
   left: 16px;
   font-size: 36px;
   line-height: 40px;

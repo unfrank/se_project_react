@@ -13,7 +13,6 @@ function DeleteConfirmationModal({ isOpen, onClose, onConfirm, card }) {
           console.error("Error deleting item:", err);
         });
     } else {
-      console.error("onConfirm is not defined");
     }
   };
 
@@ -30,14 +29,14 @@ function DeleteConfirmationModal({ isOpen, onClose, onConfirm, card }) {
         <div className="delete-modal__actions">
           <button
             type="button"
-            className="delete-modal__button delete-modal__button--confirm"
+            className="delete-modal__button delete-modal__button_confirm"
             onClick={handleConfirm}
           >
             Yes, delete item
           </button>
           <button
             type="button"
-            className="delete-modal__button delete-modal__button--cancel"
+            className="delete-modal__button delete-modal__button_cancel"
             onClick={onClose}
           >
             Cancel

@@ -5,13 +5,33 @@ import { Link } from "react-router-dom";
 import React, { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function Header({ weatherData, onLogout, onLogin, onSignUp, onAddItem }) {
+function Header({ weatherData, onLogin, onSignUp, onAddItem }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
 
   const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
+
+  const getUserAvatar = () => {
+    if (currentUser?.avatar) {
+      return (
+        <img
+          src={currentUser.avatar}
+          alt="User Profile"
+          className="header__avatar"
+        />
+      );
+    }
+    const fallbackLetter = currentUser?.name
+      ? currentUser.name[0].toUpperCase()
+      : "?";
+    return (
+      <div className="header__avatar header__avatar--fallback">
+        {fallbackLetter}
+      </div>
+    );
+  };
 
   return (
     <header className="header">
@@ -28,13 +48,7 @@ function Header({ weatherData, onLogout, onLogin, onSignUp, onAddItem }) {
         {isLoggedIn ? (
           <>
             <button
-              onClick={() => {
-                if (typeof onAddItem === "function") {
-                  onAddItem();
-                } else {
-                  console.error("❌ `onAddItem` is not a function!");
-                }
-              }}
+              onClick={onAddItem}
               type="button"
               className="header__add-clothes-btn"
             >
@@ -42,17 +56,7 @@ function Header({ weatherData, onLogout, onLogin, onSignUp, onAddItem }) {
             </button>
             <Link to="/profile" className="header__profile">
               <p className="header__username">{currentUser?.name || "User"}</p>
-              {currentUser?.avatar ? (
-                <img
-                  src={currentUser.avatar}
-                  alt="User Profile"
-                  className="header__avatar"
-                />
-              ) : (
-                <div className="header__avatar header__avatar--fallback">
-                  {currentUser.name[0].toUpperCase()}
-                </div>
-              )}
+              {getUserAvatar()}
             </Link>
           </>
         ) : (

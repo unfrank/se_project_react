@@ -1,5 +1,4 @@
 .delete-modal__content {
-  position: relative;
   background-color: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 20px;
@@ -31,24 +30,17 @@
 .delete-modal__button {
   background-color: transparent;
   border: none;
-  font-size: 20px;
   cursor: pointer;
-  text-align: center;
-  transition: color 0.3s ease;
 }
 
-.delete-modal__button--confirm {
+.delete-modal__button_confirm {
   color: #ff4d00;
 }
 
-.delete-modal__button--confirm:hover {
+.delete-modal__button_confirm:hover {
   color: #ff0000;
 }
 
-.delete-modal__button--cancel {
-  color: #000;
-}
-
-.delete-modal__button--cancel:hover {
+.delete-modal__button_cancel:hover {
   color: #666;
 }

@@ -11,7 +11,6 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
     e.preventDefault();
     if (isValid) {
       if (typeof onAddItem !== "function") {
-        console.error("onAddItem is not a valid function!");
         return;
       }
       onAddItem(values)
@@ -19,17 +18,13 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
           resetForm();
           onCloseModal();
         })
-        .catch((err) => {
-          console.error("Error adding item:", err);
-        });
+        .catch(() => {});
     }
   };
 
   React.useEffect(() => {
     if (isOpen) resetForm();
   }, [isOpen, resetForm]);
-
-  console.log("🔍 AddItemModal isOpen state:", isOpen);
 
   return (
     <ModalWithForm

@@ -41,7 +41,7 @@
   padding-bottom: 8px;
 }
 
-.sidebar__logout {
+.sidebar__button_logout {
   font-size: 20px;
   font-weight: 700;
   cursor: pointer;
@@ -60,6 +60,6 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 33px;
   text-transform: uppercase;
 }

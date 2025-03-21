@@ -32,6 +32,7 @@
   display: flex;
   align-items: center;
   margin-left: auto;
+  border: 0;
 }
 
 .header__username {
@@ -39,6 +40,7 @@
   line-height: 24.8px;
   padding-right: 12px;
   cursor: pointer;
+  padding-left: 20px;
 }
 
 .header__profile {
@@ -46,12 +48,6 @@
   align-items: center;
   text-decoration: none;
   color: black;
-}
-
-.header__avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
 }
 
 .header__auth-btn {
@@ -81,6 +77,12 @@
   background-color: gray;
   color: white;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 27.5px;
   text-transform: uppercase;
+}
+
+.header__add-item-btn {
+  border: 0;
+  margin: 0;
+  padding: 0 0 0 20px;
 }

@@ -24,21 +24,21 @@
   margin: 0;
 }
 
-.switch__slider-C {
+.switch__slider--C {
   left: 27px;
 }
 
-.switch__slider-F {
+.switch__slider--F {
   left: 1px;
 }
-.switch__active {
+.switch__temp--active {
   font-size: 14px;
   color: #f3f3f3;
   margin: 0;
 }
 
-.switch__temp-F,
-.switch__temp-C {
+.switch__temp--F,
+.switch__temp--C {
   cursor: pointer;
   position: absolute;
   top: -11px;
@@ -47,10 +47,10 @@
   margin: 0;
   top: 3px;
 }
-.switch__temp-F {
+.switch__temp--F {
   left: 11px;
 }
 
-.switch__temp-C {
+.switch__temp--C {
   right: 9px;
 }

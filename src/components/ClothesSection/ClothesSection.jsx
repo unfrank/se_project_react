@@ -11,14 +11,11 @@ function ClothesSection({
     <div className="clothes-section">
       <div className="clothes-section__header">
         <p className="clothes-section__title">Your Items</p>
-
         <button
           onClick={() => {
-            console.log("🟡 `+ Add New` button clicked!");
             if (typeof onAddItem === "function") {
               onAddItem();
             } else {
-              console.error("❌ `onAddItem` is not a function!");
             }
           }}
           type="button"
@@ -27,7 +24,7 @@ function ClothesSection({
           + Add New
         </button>
       </div>
-      <ul className="clothes-section__list">
+      <ul className="clothes-section__items">
         {clothingItems.map((item) => (
           <ItemCard
             key={item._id}

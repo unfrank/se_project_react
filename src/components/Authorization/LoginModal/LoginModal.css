@@ -1,8 +1,5 @@
-.login__modal .modal__content {
+.login-modal .modal__content {
   max-height: 304px;
-  position: relative;
-  flex-direction: column;
-  margin: 0;
 }
 
 .login-modal__actions {
@@ -10,18 +7,16 @@
   padding: 0;
   bottom: 36px;
   position: absolute;
-  min-width: 164px;
-  min-height: 36px;
 }
 
-.login-modal__submit,
+.login-modal__submit-btn,
 .login-modal__register-btn {
   margin: 0;
   padding: 0;
-  height: 36px;
+  cursor: pointer;
 }
 
-.login-modal__submit {
+.login-modal__submit-btn {
   width: 73px;
   height: 36px;
   color: white;
@@ -30,6 +25,7 @@
 
 .login-modal__register-btn {
   width: 91px;
+  height: 36px;
   border: 0;
   background-color: white;
 }

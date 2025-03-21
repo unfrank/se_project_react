@@ -5,8 +5,7 @@ import { useFormAndValidation } from "../../../hooks/useFormValidation";
 import { login } from "../../../utils/auth";
 
 const LoginModal = ({ isOpen, onClose, onAuthSuccess, setActiveModal }) => {
-  const { values, handleChange, errors, isValid, resetForm } =
-    useFormAndValidation();
+  const { values, handleChange, errors, resetForm } = useFormAndValidation();
   const [authError, setAuthError] = useState("");
 
   const handleSubmit = (e) => {
@@ -21,7 +20,6 @@ const LoginModal = ({ isOpen, onClose, onAuthSuccess, setActiveModal }) => {
         onClose();
       })
       .catch((err) => {
-        console.error("Login Error:", err);
         setAuthError("Invalid email or password");
       });
   };
@@ -32,8 +30,8 @@ const LoginModal = ({ isOpen, onClose, onAuthSuccess, setActiveModal }) => {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      className="login__modal"
-      hideSubmitButton={true} // 👈 Hide submit button for login modal
+      className="login-modal"
+      hideSubmitButton={true}
     >
       {authError && <span className="modal__error">{authError}</span>}
 
@@ -65,9 +63,8 @@ const LoginModal = ({ isOpen, onClose, onAuthSuccess, setActiveModal }) => {
         )}
       </label>
 
-      {/* Custom buttons inside login modal */}
       <div className="login-modal__actions">
-        <button type="submit" className="login-modal__submit">
+        <button type="submit" className="login-modal__submit-btn">
           Log In
         </button>
         <button
@@ -86,5 +83,3 @@ const LoginModal = ({ isOpen, onClose, onAuthSuccess, setActiveModal }) => {
 };
 
 export default LoginModal;
-
-//! remake

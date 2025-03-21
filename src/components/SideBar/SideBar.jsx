@@ -21,8 +21,6 @@ function SideBar({ onLogout, setActiveModal }) {
         )}
         <h2 className="sidebar__username">{currentUser?.name || "User"}</h2>
       </div>
-
-      {/* ✅ Now, setActiveModal is defined and works */}
       <button
         className="sidebar__button"
         onClick={() => {
@@ -33,7 +31,10 @@ function SideBar({ onLogout, setActiveModal }) {
         Change Profile Data
       </button>
 
-      <button className="sidebar__button sidebar__logout" onClick={onLogout}>
+      <button
+        className="sidebar__button sidebar__button_logout"
+        onClick={onLogout}
+      >
         Log Out
       </button>
     </div>
