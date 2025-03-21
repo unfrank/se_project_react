@@ -100,6 +100,16 @@ function App() {
       .catch((err) => console.error("Unable to fetch weather data:", err));
   }, []);
 
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === "Escape" && activeModal) {
+        setActiveModal("");
+      }
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, [activeModal]);
+
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit((prevUnit) => (prevUnit === "C" ? "F" : "C"));
   };

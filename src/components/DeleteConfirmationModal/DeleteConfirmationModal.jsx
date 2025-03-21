@@ -1,6 +1,7 @@
 import React from "react";
 import "./DeleteConfirmationModal.css";
 import closeBtn from "../../assets/close-btn--dark.png";
+import { useEffect } from "react";
 
 function DeleteConfirmationModal({ isOpen, onClose, onConfirm, card }) {
   const handleConfirm = () => {
