@@ -1,11 +1,6 @@
 const baseUrl = "http://localhost:3001";
 
-const handleResponse = (res) => {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Error: ${res.status} ${res.statusText}`);
-};
+import { handleResponse } from "./api";
 
 export const register = (email, password, name, avatar = "") => {
   return fetch(`${baseUrl}/signup`, {

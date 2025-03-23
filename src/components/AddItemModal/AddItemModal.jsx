@@ -3,7 +3,13 @@ import React from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormAndValidation } from "../../hooks/useFormValidation";
 
-const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
+const AddItemModal = ({
+  isOpen,
+  onAddItem,
+  onCloseModal,
+  isLoading,
+  buttonText,
+}) => {
   const { values, handleChange, errors, isValid, resetForm } =
     useFormAndValidation();
 
@@ -18,7 +24,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
           resetForm();
           onCloseModal();
         })
-        .catch(() => {});
+        .catch(console.error);
     }
   };
 
@@ -29,11 +35,11 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
   return (
     <ModalWithForm
       title="New Garment"
-      buttonText="Add Garment"
+      buttonText={buttonText || "Add Garment"}
       isOpen={isOpen}
       onClose={onCloseModal}
       onSubmit={handleSubmit}
-      disabled={!isValid}
+      disabled={!isValid || isLoading}
     >
       <label htmlFor="name" className="modal__label">
         Name

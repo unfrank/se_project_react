@@ -1,8 +1,15 @@
-import React, { useState, useContext } from "react";
+import "./RegisterModal.css";
+import React, { useState } from "react";
 import ModalWithForm from "../../ModalWithForm/ModalWithForm";
 import { useFormAndValidation } from "../../../hooks/useFormValidation";
 
-const RegisterModal = ({ isOpen, onClose, onRegister }) => {
+const RegisterModal = ({
+  isOpen,
+  onClose,
+  onRegister,
+  isLoading,
+  setActiveModal,
+}) => {
   const { values, handleChange, errors, isValid, resetForm } =
     useFormAndValidation();
   const [authError, setAuthError] = useState("");
@@ -23,13 +30,13 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
 
   return (
     <ModalWithForm
+      className="register__modal"
       title="Sign Up"
-      buttonText="Sign Up"
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      disabled={!isValid}
-      className="register__modal"
+      disabled={!isValid || isLoading}
+      hideSubmitButton={true}
     >
       {authError && <span className="modal__error">{authError}</span>}
 
@@ -82,6 +89,25 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
         />
         {errors.avatar && <span className="modal__error">{errors.avatar}</span>}
       </label>
+      <div className="register-modal__actions">
+        <button
+          type="submit"
+          className="register-modal__submit-btn"
+          disabled={isLoading}
+        >
+          Next
+        </button>
+        <button
+          type="button"
+          className="register-modal__login-btn"
+          onClick={() => {
+            onClose();
+            setActiveModal("login");
+          }}
+        >
+          or Log In
+        </button>
+      </div>
     </ModalWithForm>
   );
 };

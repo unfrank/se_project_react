@@ -1,5 +1,6 @@
 import "./ModalWithForm.css";
 import closeBtn from "../../assets/close-btn--dark.png";
+import useModalClose from "../../hooks/useModalClose";
 
 function ModalWithForm({
   title,
@@ -11,6 +12,8 @@ function ModalWithForm({
   children,
   hideSubmitButton = false,
 }) {
+  useModalClose(isOpen, onClose);
+
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""} ${className}`}>
       <div className="modal__content">

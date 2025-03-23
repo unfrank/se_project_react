@@ -3,6 +3,7 @@ import "./ItemModal.css";
 import closeBtnLight from "../../assets/close-btn--light.png";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
+import useModalClose from "../../hooks/useModalClose";
 
 function ItemModal({ isOpen, onClose, card, onDeleteItem }) {
   const { isLoggedIn, currentUser } = useContext(CurrentUserContext);
@@ -20,7 +21,7 @@ function ItemModal({ isOpen, onClose, card, onDeleteItem }) {
       onClose();
     });
   };
-
+  useModalClose(isOpen, onClose);
   return (
     <>
       <div className={`modal ${isOpen ? "modal_opened" : ""} modal--item`}>

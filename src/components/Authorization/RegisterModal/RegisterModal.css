@@ -1,0 +1,31 @@
+.register__modal .modal__content {
+  min-height: 466px;
+}
+
+.register-modal__actions {
+  margin: 0;
+  padding: 0;
+  bottom: 36px;
+  position: absolute;
+}
+
+.register-modal__submit-btn,
+.register-modal__login-btn {
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.register-modal__submit-btn {
+  width: 73px;
+  height: 36px;
+  color: white;
+  background-color: black;
+}
+
+.register-modal__login-btn {
+  width: 91px;
+  height: 36px;
+  border: 0;
+  background-color: white;
+}

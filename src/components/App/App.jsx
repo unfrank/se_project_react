@@ -17,8 +17,7 @@ import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmati
 import RegisterModal from "../Authorization/RegisterModal/RegisterModal";
 import LoginModal from "../Authorization/LoginModal/LoginModal";
 import ProtectedRoute from "../Authorization/ProtectedRoute/ProtectedRoute";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
-
+import ProfileModal from "../ProfileModal/ProfileModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
@@ -46,12 +45,7 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    window.currentUser = currentUser;
-    window.isLoggedIn = isLoggedIn;
-  }, [currentUser, isLoggedIn]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
@@ -71,24 +65,27 @@ function App() {
   }, []);
 
   useEffect(() => {
-    setLoading(true);
+    setIsLoading(true);
     getItems()
       .then((items) => {
         setClothingItems(items.reverse());
       })
       .catch((err) => console.error("Failed to fetch items:", err))
       .finally(() => {
-        setLoading(false);
+        setIsLoading(false);
       });
   }, []);
 
   const handleAddItem = async (newItem) => {
+    setIsLoading(true);
     try {
       const savedItem = await addItem(newItem);
       setClothingItems((prevItems) => [savedItem, ...prevItems]);
       setActiveModal("");
     } catch (err) {
       console.error("Error adding item:", err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -100,35 +97,31 @@ function App() {
       .catch((err) => console.error("Unable to fetch weather data:", err));
   }, []);
 
-  useEffect(() => {
-    const handleEsc = (e) => {
-      if (e.key === "Escape" && activeModal) {
-        setActiveModal("");
-      }
-    };
-    window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
-  }, [activeModal]);
-
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit((prevUnit) => (prevUnit === "C" ? "F" : "C"));
   };
 
   const handleRegister = ({ email, password, name, avatar }) => {
+    setIsLoading(true);
     register(email, password, name, avatar)
-      .then((data) => {
-        setCurrentUser(data.user);
+      .then(() => {
+        return login({ email, password });
+      })
+      .then((res) => {
+        localStorage.setItem("jwt", res.token);
+        setCurrentUser(res.user);
         setIsLoggedIn(true);
-        localStorage.setItem("jwt", data.token);
         setActiveModal("");
       })
       .catch((err) => {
-        console.error("Registration failed:", err);
-      });
+        console.error("Registration/login failed:", err);
+      })
+      .finally(() => setIsLoading(false));
   };
 
   const handleProfileUpdate = (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const form = e.target;
     const name = form.name.value;
     const avatar = form.avatar.value;
@@ -139,7 +132,8 @@ function App() {
         setCurrentUser(updatedUser);
         setActiveModal(null);
       })
-      .catch((err) => console.error("Profile update failed:", err));
+      .catch((err) => console.error("Profile update failed:", err))
+      .finally(() => setIsLoading(false));
   };
 
   const handleDeleteItem = async (card) => {
@@ -158,12 +152,13 @@ function App() {
     if (!credentials.user || !credentials.token) {
       return;
     }
-
+    setIsLoading(true);
     localStorage.setItem("jwt", credentials.token);
     localStorage.setItem("user", JSON.stringify(credentials.user));
 
     setCurrentUser(credentials.user);
     setIsLoggedIn(true);
+    setIsLoading(false);
   };
 
   const handleCardClick = (item) => {
@@ -211,7 +206,7 @@ function App() {
                 onSignUp={() => setActiveModal("register")}
                 onAddItem={() => setActiveModal("add-garment")}
               />
-              {loading && <div className="loading">Loading...</div>}
+              {isLoading && <div className="loading">Loading...</div>}
               <Routes>
                 <Route
                   path="/"
@@ -221,7 +216,6 @@ function App() {
                       clothingItems={clothingItems}
                       handleCardClick={handleCardClick}
                       onCardLike={handleCardLike}
-                      currentUser={currentUser}
                     />
                   }
                 />
@@ -235,7 +229,6 @@ function App() {
                         setActiveModal={setActiveModal}
                         handleCardClick={handleCardClick}
                         onCardLike={handleCardLike}
-                        currentUser={currentUser}
                       />
                     }
                   />
@@ -248,6 +241,8 @@ function App() {
                 isOpen={activeModal === "add-garment"}
                 onAddItem={handleAddItem}
                 onCloseModal={() => setActiveModal("")}
+                isLoading={isLoading}
+                buttonText={isLoading ? "Saving..." : "Add Garment"}
               />
               <ItemModal
                 isOpen={activeModal === "preview"}
@@ -263,6 +258,9 @@ function App() {
                 isOpen={activeModal === "register"}
                 onClose={() => setActiveModal("")}
                 onRegister={handleRegister}
+                isLoading={isLoading}
+                buttonText={isLoading ? "Saving..." : "Sign Up"}
+                setActiveModal={setActiveModal}
               />
               <LoginModal
                 isOpen={activeModal === "login"}
@@ -271,36 +269,14 @@ function App() {
                 onAuthSuccess={(credentials) => {
                   handleLogin(credentials);
                 }}
+                isLoading={isLoading}
+                buttonText={isLoading ? "Saving..." : "Log In"}
               />
-              {activeModal === "edit-profile" && (
-                <ModalWithForm
-                  title="Change Profile Data"
-                  isOpen={true}
-                  onClose={() => setActiveModal(null)}
-                  onSubmit={handleProfileUpdate}
-                  className="change-profile__modal"
-                >
-                  <label>
-                    Name*
-                    <input
-                      className="modal__input"
-                      type="text"
-                      name="name"
-                      defaultValue={currentUser?.name}
-                      required
-                    />
-                  </label>
-                  <label>
-                    Avatar
-                    <input
-                      className="modal__input"
-                      type="url"
-                      name="avatar"
-                      defaultValue={currentUser?.avatar}
-                    />
-                  </label>
-                </ModalWithForm>
-              )}
+              <ProfileModal
+                isOpen={activeModal === "edit-profile"}
+                onClose={() => setActiveModal(null)}
+                onSubmit={handleProfileUpdate}
+              />
             </CurrentTemperatureUnitContext.Provider>
           </CurrentUserContext.Provider>
         </div>

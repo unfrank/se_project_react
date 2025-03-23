@@ -4,7 +4,13 @@ import ModalWithForm from "../../ModalWithForm/ModalWithForm";
 import { useFormAndValidation } from "../../../hooks/useFormValidation";
 import { login } from "../../../utils/auth";
 
-const LoginModal = ({ isOpen, onClose, onAuthSuccess, setActiveModal }) => {
+const LoginModal = ({
+  isOpen,
+  onClose,
+  onAuthSuccess,
+  setActiveModal,
+  isLoading,
+}) => {
   const { values, handleChange, errors, resetForm } = useFormAndValidation();
   const [authError, setAuthError] = useState("");
 
@@ -64,7 +70,11 @@ const LoginModal = ({ isOpen, onClose, onAuthSuccess, setActiveModal }) => {
       </label>
 
       <div className="login-modal__actions">
-        <button type="submit" className="login-modal__submit-btn">
+        <button
+          type="submit"
+          className="login-modal__submit-btn"
+          disabled={isLoading}
+        >
           Log In
         </button>
         <button
