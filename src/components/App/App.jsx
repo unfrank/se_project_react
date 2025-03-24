@@ -119,12 +119,8 @@ function App() {
       .finally(() => setIsLoading(false));
   };
 
-  const handleProfileUpdate = (e) => {
-    e.preventDefault();
+  const handleProfileUpdate = ({ name, avatar }) => {
     setIsLoading(true);
-    const form = e.target;
-    const name = form.name.value;
-    const avatar = form.avatar.value;
     const token = localStorage.getItem("jwt");
 
     updateUserProfile(token, { name, avatar })
@@ -276,6 +272,7 @@ function App() {
                 isOpen={activeModal === "edit-profile"}
                 onClose={() => setActiveModal(null)}
                 onSubmit={handleProfileUpdate}
+                currentUser={currentUser}
               />
             </CurrentTemperatureUnitContext.Provider>
           </CurrentUserContext.Provider>

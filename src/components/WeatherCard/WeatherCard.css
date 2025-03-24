@@ -2,10 +2,6 @@
   display: flex;
   position: relative;
   height: 80px;
-  /* border-radius: 12px; */
-  /* overflow: hidden; */
-  /* justify-content: center; */
-  /* align-items: center; */
 }
 
 .weather-card__temp {
@@ -20,6 +16,5 @@
 
 .weather-card__image {
   width: 100%;
-  object-fit: cover;
   object-position: right top;
 }

@@ -1,5 +1,9 @@
 const baseUrl = "http://localhost:3001";
 
+const request = (url, options) => {
+  return fetch(url, options).then(handleResponse);
+};
+
 export const handleResponse = (res) => {
   if (res.ok) {
     return res.json();
