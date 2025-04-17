@@ -1,4 +1,9 @@
-const baseUrl = "http://localhost:3001";
+// const baseUrl = "http://localhost:3001";
+
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.unfrank.crabdance.com"
+    : "http://localhost:3001";
 
 import { handleResponse } from "./api";
 
