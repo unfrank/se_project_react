@@ -101,6 +101,25 @@ function App() {
     setCurrentTemperatureUnit((prevUnit) => (prevUnit === "C" ? "F" : "C"));
   };
 
+  // const handleRegister = ({ email, password, name, avatar }) => {
+  //   setIsLoading(true);
+  //   register(email, password, name, avatar)
+  //     .then(() => {
+  //       return login({ email, password });
+  //     })
+  //     .then((res) => {
+  //       localStorage.setItem("jwt", res.token);
+  //       setCurrentUser(res.user);
+
+  //       setIsLoggedIn(true);
+  //       setActiveModal("");
+  //     })
+  //     .catch((err) => {
+  //       console.error("Registration/login failed:", err);
+  //     })
+  //     .finally(() => setIsLoading(false));
+  // };
+
   const handleRegister = ({ email, password, name, avatar }) => {
     setIsLoading(true);
     register(email, password, name, avatar)
@@ -109,7 +128,10 @@ function App() {
       })
       .then((res) => {
         localStorage.setItem("jwt", res.token);
-        setCurrentUser(res.user);
+        return getUserInfo(res.token); // ← fetch user immediately
+      })
+      .then((userData) => {
+        setCurrentUser(userData); // ← update state
         setIsLoggedIn(true);
         setActiveModal("");
       })
