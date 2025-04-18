@@ -83,7 +83,6 @@ export const signup = (formData) => {
   });
 };
 
-//!new
 export const getUserInfo = (token) => {
   return request(`${baseUrl}/users/me`, {
     method: "GET",
