@@ -103,24 +103,6 @@ function App() {
   };
 
   //! orig
-  // const handleRegister = ({ email, password, name, avatar }) => {
-  //   setIsLoading(true);
-  //   register(email, password, name, avatar)
-  //     .then(() => {
-  //       return login({ email, password });
-  //     })
-  //     .then((res) => {
-  //       localStorage.setItem("jwt", res.token);
-  //       setCurrentUser(res.user);
-  //       setIsLoggedIn(true);
-  //       setActiveModal("");
-  //     })
-  //     .catch((err) => {
-  //       console.error("Registration/login failed:", err);
-  //     })
-  //     .finally(() => setIsLoading(false));
-  // };
-
   const handleRegister = ({ email, password, name, avatar }) => {
     setIsLoading(true);
     register(email, password, name, avatar)
@@ -129,14 +111,7 @@ function App() {
       })
       .then((res) => {
         localStorage.setItem("jwt", res.token);
-        return getUserInfo(res.token);
-      })
-      .then((user) => {
-        setCurrentUser(user);
-        return getUserInfo(res.token); // ← fetch user immediately
-      })
-      .then((userData) => {
-        setCurrentUser(userData); // ← update state
+        setCurrentUser(res.user);
         setIsLoggedIn(true);
         setActiveModal("");
       })
@@ -145,6 +120,32 @@ function App() {
       })
       .finally(() => setIsLoading(false));
   };
+
+  // const handleRegister = ({ email, password, name, avatar }) => {
+  //   setIsLoading(true);
+  //   register(email, password, name, avatar)
+  //     .then(() => {
+  //       return login({ email, password });
+  //     })
+  //     .then((res) => {
+  //       localStorage.setItem("jwt", res.token);
+  //       return getUserInfo(res.token);
+  //     })
+  //     .then((user) => {
+  //       setCurrentUser(user);
+  //       return getUserInfo(res.token);
+  //     })
+  //     .then((userData) => {
+  //       console.log("User data:", userData);
+  //       setCurrentUser(userData);
+  //       setIsLoggedIn(true);
+  //       setActiveModal("");
+  //     })
+  //     .catch((err) => {
+  //       console.error("Registration/login failed:", err);
+  //     })
+  //     .finally(() => setIsLoading(false));
+  // };
 
   //!
 

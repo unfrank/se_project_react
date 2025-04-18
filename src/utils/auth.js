@@ -37,7 +37,7 @@ export const login = ({ email, password }) => {
 
 export const checkToken = (token) => {
   return fetch(`${baseUrl}/users/me`, {
-    method: "GET",
+    method: "D",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
