@@ -72,3 +72,24 @@ export const removeCardLike = (id, token) => {
     },
   });
 };
+
+export const signup = (formData) => {
+  return request(`${baseUrl}/signup`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
+};
+
+//!new
+export const getUserInfo = (token) => {
+  return request(`${baseUrl}/users/me`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
+};

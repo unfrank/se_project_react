@@ -31,6 +31,7 @@ import {
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, apiKey } from "../../utils/constants";
 import { addCardLike, removeCardLike } from "../../utils/api";
+import { getUserInfo } from "../utils/api";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -101,6 +102,25 @@ function App() {
     setCurrentTemperatureUnit((prevUnit) => (prevUnit === "C" ? "F" : "C"));
   };
 
+  //! orig
+  // const handleRegister = ({ email, password, name, avatar }) => {
+  //   setIsLoading(true);
+  //   register(email, password, name, avatar)
+  //     .then(() => {
+  //       return login({ email, password });
+  //     })
+  //     .then((res) => {
+  //       localStorage.setItem("jwt", res.token);
+  //       setCurrentUser(res.user);
+  //       setIsLoggedIn(true);
+  //       setActiveModal("");
+  //     })
+  //     .catch((err) => {
+  //       console.error("Registration/login failed:", err);
+  //     })
+  //     .finally(() => setIsLoading(false));
+  // };
+
   const handleRegister = ({ email, password, name, avatar }) => {
     setIsLoading(true);
     register(email, password, name, avatar)
@@ -109,7 +129,10 @@ function App() {
       })
       .then((res) => {
         localStorage.setItem("jwt", res.token);
-        setCurrentUser(res.user);
+        return getUserInfo(res.token);
+      })
+      .then((user) => {
+        setCurrentUser(user);
         setIsLoggedIn(true);
         setActiveModal("");
       })
@@ -118,6 +141,8 @@ function App() {
       })
       .finally(() => setIsLoading(false));
   };
+
+  //!
 
   const handleProfileUpdate = ({ name, avatar }) => {
     setIsLoading(true);
