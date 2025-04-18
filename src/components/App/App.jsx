@@ -30,8 +30,8 @@ import {
 } from "../../utils/api";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, apiKey } from "../../utils/constants";
-import { addCardLike, removeCardLike } from "../../utils/api";
-import { getUserInfo } from "../utils/api";
+import { addCardLike, removeCardLike, getUserInfo } from "../../utils/api";
+// import { getUserInfo } from "../utils/api";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -137,7 +137,7 @@ function App() {
         setActiveModal("");
       })
       .catch((err) => {
-        console.error("Registration/login failed:", err); //TODO ERROR HANDLING
+        console.error("Registration/login failed:", err);
       })
       .finally(() => setIsLoading(false));
   };
