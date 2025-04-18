@@ -133,6 +133,10 @@ function App() {
       })
       .then((user) => {
         setCurrentUser(user);
+        return getUserInfo(res.token); // ← fetch user immediately
+      })
+      .then((userData) => {
+        setCurrentUser(userData); // ← update state
         setIsLoggedIn(true);
         setActiveModal("");
       })
