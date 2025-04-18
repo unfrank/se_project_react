@@ -21,8 +21,7 @@ import ProfileModal from "../ProfileModal/ProfileModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
-import { register, login } from "../../utils/auth";
-
+import { register, login, checkToken } from "../../utils/auth";
 import {
   getItems,
   addItem,
@@ -31,7 +30,7 @@ import {
 } from "../../utils/api";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, apiKey } from "../../utils/constants";
-import { addCardLike, removeCardLike, getUserInfo } from "../../utils/api";
+import { addCardLike, removeCardLike } from "../../utils/api";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -102,7 +101,6 @@ function App() {
     setCurrentTemperatureUnit((prevUnit) => (prevUnit === "C" ? "F" : "C"));
   };
 
-  //! orig
   const handleRegister = ({ email, password, name, avatar }) => {
     setIsLoading(true);
     register(email, password, name, avatar)
@@ -120,34 +118,6 @@ function App() {
       })
       .finally(() => setIsLoading(false));
   };
-
-  // const handleRegister = ({ email, password, name, avatar }) => {
-  //   setIsLoading(true);
-  //   register(email, password, name, avatar)
-  //     .then(() => {
-  //       return login({ email, password });
-  //     })
-  //     .then((res) => {
-  //       localStorage.setItem("jwt", res.token);
-  //       return getUserInfo(res.token);
-  //     })
-  //     .then((user) => {
-  //       setCurrentUser(user);
-  //       return getUserInfo(res.token);
-  //     })
-  //     .then((userData) => {
-  //       console.log("User data:", userData);
-  //       setCurrentUser(userData);
-  //       setIsLoggedIn(true);
-  //       setActiveModal("");
-  //     })
-  //     .catch((err) => {
-  //       console.error("Registration/login failed:", err);
-  //     })
-  //     .finally(() => setIsLoading(false));
-  // };
-
-  //!
 
   const handleProfileUpdate = ({ name, avatar }) => {
     setIsLoading(true);
