@@ -21,7 +21,8 @@ import ProfileModal from "../ProfileModal/ProfileModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
-import { register, login, checkToken } from "../../utils/auth";
+import { register, login, getUserInfo } from "../../utils/auth";
+
 import {
   getItems,
   addItem,
