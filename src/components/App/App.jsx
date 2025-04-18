@@ -21,7 +21,7 @@ import ProfileModal from "../ProfileModal/ProfileModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
-import { register, login, getUserInfo } from "../../utils/auth";
+import { register, login } from "../../utils/auth";
 
 import {
   getItems,
@@ -32,7 +32,6 @@ import {
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, apiKey } from "../../utils/constants";
 import { addCardLike, removeCardLike, getUserInfo } from "../../utils/api";
-// import { getUserInfo } from "../utils/api";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
