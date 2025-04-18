@@ -137,7 +137,7 @@ function App() {
         setActiveModal("");
       })
       .catch((err) => {
-        console.error("Registration/login failed:", err);
+        console.error("Registration/login failed:", err); //TODO ERROR HANDLING
       })
       .finally(() => setIsLoading(false));
   };
